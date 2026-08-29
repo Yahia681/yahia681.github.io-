@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>تفاصيل الرواية | Taleora</title>
+<style>
+:root{
+  --bg:#0d0a09;
+  --card:#16120f;
+  --gold:#d9a45e;
+  --gold2:#f0c982;
+  --text:#fff8ef;
+  --muted:#a69788;
+  --line:#ffffff15;
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Tahoma,Arial,sans-serif;padding:20px;}
+.container{max-width:800px;margin:40px auto;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:30px;display:flex;gap:30px;flex-wrap:wrap;}
+.book-img{width:250px;height:350px;border-radius:12px;object-fit:cover;}
+.book-details{flex:1;min-width:250px;}
+h1{color:var(--gold2);margin-top:0;font-size:24px;}
+.author{color:var(--muted);margin-bottom:15px;font-size:14px;}
+.price{color:var(--gold2);font-size:20px;font-weight:bold;margin:20px 0;}
+.desc{color:var(--muted);line-height:1.8;margin-bottom:25px;font-size:14px;}
+.back{display:inline-block;margin-bottom:20px;color:var(--gold2);text-decoration:none;font-weight:bold;}
+.back:hover{text-decoration:underline;}
+</style>
+</head>
+<body>
+
+<a href="index.html" class="back">← العودة للرئيسية</a>
+<div class="container" id="bookDetails">
+  <p style="color:var(--muted);text-align:center;width:100%;">جاري تحميل تفاصيل الرواية...</p>
+</div>
+
+<script>
+const books = [
+  { id: 1, title: "ألف شمس ساطعة", author: "خالد حسيني", price: 190, category: "رومانسية", cover: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=500&q=80", desc: "رواية مؤثرة تأخذنا في رحلة عميقة داخل المجتمع الأفغاني." },
+  { id: 2, title: "خريف البراءة", author: "أحمد مراد", price: 200, category: "غموض", cover: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=500&q=80", desc: "عمل تشويقي استثنائي يأخذك في عوالم الغموض وكشف الأسرار." },
+  { id: 3, title: "الرحلة", author: "باسم خندقجي", price: 170, category: "مغامرة", cover: "https://images.unsplash.com/photo-1495640388908-05fa85288e61?auto=format&fit=crop&w=500&q=80", desc: "قصة مليئة بالتحديات والمغامرات الإنسانية العميقة." },
+  { id: 4, title: "قواعد العشق الأربعون", author: "إليف شافاق", price: 210, category: "رومانسية", cover: "https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=500&q=80", desc: "رحلة صوفية تبحث عن الحب الحقيقي ومعاني الحياة والروح." },
+  { id: 5, title: "عندما يعزف الشيطان", author: "منى الشاذلي", price: 180, category: "رعب", cover: "https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?auto=format&fit=crop&w=500&q=80", desc: "حكاية مرعبة وغامضة تأخذك إلى أقصى حدود التشويق." },
+  { id: 6, title: "1984", author: "جورج أورويل", price: 160, category: "كلاسيكيات", cover: "https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=500&q=80", desc: "الرواية الديستوبية الشهيرة التي تحذر من السيطرة المطلقة." }
+];
+
+const urlParams = new URLSearchParams(window.location.search);
+const bookId = parseInt(urlParams.get('id'));
+const book = books.find(b => b.id === bookId);
+const container = document.getElementById('bookDetails');
+
+if(book) {
+  container.innerHTML = `
+    <img src="${book.cover}" class="book-img" alt="${book.title}">
+    <div class="book-details">
+      <h1>${book.title}</h1>
+      <div class="author">المؤلف: ${book.author} | التصنيف: ${book.category}</div>
+      <div class="price">${book.price} ج.م</div>
+      <div class="desc">${book.desc}</div>
+    </div>
+  `;
+} else {
+  container.innerHTML = `<p style="color:var(--muted);text-align:center;width:100%;">عذراً، لم يتم العثور على هذه الرواية.</p>`;
+}
+</script>
+</body>
+</html>

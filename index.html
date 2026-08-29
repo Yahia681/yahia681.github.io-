@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Taleora | عالمك بين صفحات الحكايات</title>
+<style>
+:root{
+  --bg:#0d0a09;
+  --card:#16120f;
+  --card-hover:#1f1915;
+  --gold:#d9a45e;
+  --gold2:#f0c982;
+  --text:#fff8ef;
+  --muted:#a69788;
+  --line:#ffffff15;
+  --accent:#ff4757;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Tahoma,Arial,sans-serif;}
+
+header{
+  position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:15px;
+  padding:15px 5%;background:#0d0a0be8;backdrop-filter:blur(15px);
+  border-bottom:1px solid var(--line);
+}
+.logo{font-size:22px;font-weight:900;color:var(--gold2);cursor:pointer;white-space:nowrap;}
+.logo small{display:block;font-size:8px;letter-spacing:4px;color:#fff;text-align:center;}
+.search-box{flex:1;max-width:400px;margin-right:auto;}
+.search{
+  width:100%;background:#ffffff08;border:1px solid var(--line);color:white;
+  border-radius:30px;padding:10px 18px;outline:none;font-size:13px;transition:0.2s;
+}
+.search:focus{border-color:var(--gold);background:#ffffff10;}
+.icon-btn{background:none;border:0;color:white;font-size:20px;cursor:pointer;position:relative;padding:5px;}
+#count{
+  position:absolute;top:-2px;right:-5px;background:var(--gold);color:#000;
+  font-size:10px;font-weight:bold;padding:1px 5px;border-radius:50%;
+}
+
+.hero{
+  min-height:480px;display:flex;align-items:center;padding:60px 8%;
+  background:radial-gradient(circle at 80% 30%, #59351e44, transparent 40%),
+             linear-gradient(135deg, #0d0a09, #1c110b);
+  border-bottom:1px solid var(--line);
+}
+.hero h1{font-size:clamp(32px,5vw,60px);line-height:1.2;margin:0 0 15px;}
+.hero h1 span{color:var(--gold2);}
+.hero p{color:var(--muted);font-size:16px;line-height:1.8;max-width:550px;margin-bottom:25px;}
+
+.btn{
+  border:0;border-radius:12px;padding:12px 24px;
+  background:linear-gradient(135deg, var(--gold2), var(--gold));
+  color:#1c110b;font-weight:900;cursor:pointer;transition:0.2s;text-decoration:none;display:inline-block;
+}
+.btn:hover{filter:brightness(1.1);transform:translateY(-2px);}
+
+.categories{display:flex;gap:10px;overflow-x:auto;padding:10px 0;scrollbar-width:none;}
+.categories::-webkit-scrollbar{display:none;}
+.category-chip{
+  background:var(--card);border:1px solid var(--line);padding:10px 20px;
+  border-radius:25px;cursor:pointer;white-space:nowrap;font-size:13px;transition:0.2s;color:var(--muted);
+}
+.category-chip:hover, .category-chip.active{border-color:var(--gold);color:var(--gold2);background:var(--card-hover);}
+
+section{width:90%;max-width:1200px;margin:40px auto;}
+.section-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
+.section-header h2{font-size:24px;margin:0;position:relative;}
+.section-header h2::after{content:"";display:block;width:40px;height:3px;background:var(--gold);margin-top:6px;border-radius:2px;}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(180px, 1fr));gap:20px;}
+.book-card{
+  background:var(--card);border:1px solid var(--line);border-radius:16px;
+  overflow:hidden;cursor:pointer;transition:0.3s;display:flex;flex-direction:column;
+}
+.book-card:hover{transform:translateY(-6px);border-color:var(--gold);box-shadow:0 10px 25px rgba(0,0,0,0.4);}
+.book-cover{height:230px;position:relative;background:#221a15;overflow:hidden;}
+.book-cover img{width:100%;height:100%;object-fit:cover;transition:0.3s;}
+.book-card:hover .book-cover img{transform:scale(1.05);}
+
+.fav-action{
+  position:absolute;top:10px;left:10px;background:rgba(0,0,0,0.6);
+  border:none;border-radius:50%;width:32px;height:32px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;font-size:16px;transition:0.2s;z-index:2;
+}
+.fav-action:hover{background:rgba(0,0,0,0.8);transform:scale(1.1);}
+
+.book-info{padding:12px;display:flex;flex-direction:column;flex:1;}
+.book-info h3{font-size:14px;margin:0 0 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.book-author{color:var(--muted);font-size:11px;margin-bottom:10px;}
+.book-footer{display:flex;justify-content:space-between;align-items:center;margin-top:auto;}
+.price{color:var(--gold2);font-weight:bold;font-size:13px;}
+.add-cart-btn{
+  background:var(--gold);border:none;padding:6px 12px;border-radius:8px;
+  font-weight:bold;cursor:pointer;font-size:11px;color:#1c110b;transition:0.2s;
+}
+.add-cart-btn:hover{background:var(--gold2);}
+
+.drawer{
+  position:fixed;inset:0 0 0 auto;width:min(380px, 90vw);background:#130f0d;
+  z-index:100;padding:25px;box-shadow:-10px 0 30px rgba(0,0,0,0.7);
+  transform:translateX(110%);transition:0.3s cubic-bezier(0.4, 0, 0.2, 1);overflow-y:auto;
+}
+.drawer.open{transform:none;}
+.close-btn{background:none;border:none;color:white;font-size:24px;cursor:pointer;float:left;}
+.cart-item{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px;}
+.remove-btn{background:none;border:none;color:var(--accent);cursor:pointer;font-size:16px;}
+
+footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);margin-top:60px;}
+
+@media(max-width:600px){
+  .grid{grid-template-columns:repeat(2, 1fr);gap:12px;}
+  .book-cover{height:180px;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <button class="icon-btn" onclick="toggleMenu()">☰</button>
+  <div class="logo" onclick="resetFilter()">TALEORA<small>عالم الحكايات</small></div>
+  <div class="search-box">
+    <input id="searchInput" class="search" placeholder="ابحث عن رواية أو مؤلف..." oninput="handleSearch()">
+  </div>
+  <button class="icon-btn" onclick="toggleCart()">🛒<span id="count">0</span></button>
+</header>
+
+<div class="hero">
+  <div>
+    <h1>كل حكاية لها بداية...<br><span>وكل رواية لها عالم.</span></h1>
+    <p>استمتع بتجربة قراءة فريدة واستكشف أفضل الروايات العربية والعالمية بكل سهولة ويسر.</p>
+    <a href="#booksSection" class="btn">استكشف الروايات الآن</a>
+  </div>
+</div>
+
+<section id="booksSection">
+  <div class="section-header"><h2>التصنيفات</h2></div>
+  <div class="categories">
+    <div class="category-chip active" onclick="filterByCategory('الكل', this)">الكل</div>
+    <div class="category-chip" onclick="filterByCategory('رومانسية', this)">❤️ رومانسية</div>
+    <div class="category-chip" onclick="filterByCategory('غموض', this)">🔎 غموض</div>
+    <div class="category-chip" onclick="filterByCategory('رعب', this)">👻 رعب</div>
+    <div class="category-chip" onclick="filterByCategory('مغامرة', this)">🗺️ مغامرة</div>
+    <div class="category-chip" onclick="filterByCategory('كلاسيكيات', this)">📜 كلاسيكيات</div>
+  </div>
+
+  <div class="section-header" style="margin-top:40px;">
+    <h2 id="sectionTitle">مكتبة الروايات</h2>
+  </div>
+  <div class="grid" id="bookGrid"></div>
+</section>
+
+<footer>
+  <strong style="color:var(--gold2)">Taleora Store</strong><br>جميع الحقوق محفوظة © 2026
+</footer>
+
+<!-- القائمة الجانبية -->
+<aside id="menuDrawer" class="drawer">
+  <button class="close-btn" onclick="toggleMenu()">×</button>
+  <h2 style="margin-top:0;">القائمة الرئيسية</h2>
+  <ul style="list-style:none;padding:0;margin-top:25px;line-height:2.5;">
+    <li><a href="index.html" style="color:var(--text);text-decoration:none;font-size:16px;">🏠 الرئيسية</a></li>
+    <li><a href="#" onclick="toggleMenu(); showFavoritesView();" style="color:var(--text);text-decoration:none;font-size:16px;">❤️ مفضلاتك المحفوظة</a></li>
+  </ul>
+</aside>
+
+<!-- سلة المشتريات -->
+<aside id="cartDrawer" class="drawer">
+  <button class="close-btn" onclick="toggleCart()">×</button>
+  <h2 style="margin-top:0;">سلة المشتريات</h2>
+  <div id="cartItemsList" style="margin-top:15px;"></div>
+  
+  <!-- حقول إدخال بيانات العميل -->
+  <div style="margin-top:15px;border-top:1px solid var(--line);padding-top:15px;display:flex;flex-direction:column;gap:10px;">
+    <input type="text" id="custName" placeholder="الاسم الكريم" class="search" style="border-radius:8px;font-size:12px;padding:8px 12px;width:100%;max-width:100%;">
+    <input type="tel" id="custPhone" placeholder="رقم الموبايل" class="search" style="border-radius:8px;font-size:12px;padding:8px 12px;width:100%;max-width:100%;">
+    <textarea id="custAddress" placeholder="العنوان بالتفصيل (المحافظة، المنطقة، الشارع)" class="search" style="border-radius:8px;font-size:12px;padding:8px 12px;width:100%;max-width:100%;resize:none;height:65px;font-family:Tahoma;"></textarea>
+  </div>
+
+  <div style="margin-top:15px;border-top:1px solid var(--line);padding-top:15px;">
+    <div style="display:flex;justify-content:space-between;font-size:16px;margin-bottom:15px;">
+      <span>الإجمالي:</span>
+      <b style="color:var(--gold2);" id="totalPrice">0 جنيه</b>
+    </div>
+    
+    <!-- خيارات إتمام الطلب عبر وسائل التواصل المختلفة -->
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <button class="btn" style="width:100%;text-align:center;background:linear-gradient(135deg, #25D366, #128C7E);color:white;font-size:13px;padding:10px;" onclick="checkoutWhatsApp()">🟢 إتمام عبر واتساب</button>
+      <button class="btn" style="width:100%;text-align:center;background:linear-gradient(135deg, #0088cc, #00aaee);color:white;font-size:13px;padding:10px;" onclick="checkoutTelegram()">🔵 إتمام عبر تليجرام</button>
+      <button class="btn" style="width:100%;text-align:center;background:linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);color:white;font-size:13px;padding:10px;" onclick="checkoutInstagram()">🟣 إتمام عبر إنستجرام</button>
+    </div>
+  </div>
+</aside>
+
+<script>
+const books = [
+  { id: 1, title: "ألف شمس ساطعة", author: "خالد حسيني", price: 190, category: "رومانسية", cover: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=500&q=80", desc: "رواية مؤثرة تأخذنا في رحلة عميقة داخل المجتمع الأفغاني." },
+  { id: 2, title: "خريف البراءة", author: "أحمد مراد", price: 200, category: "غموض", cover: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=500&q=80", desc: "عمل تشويقي استثنائي يأخذك في عوالم الغموض وكشف الأسرار." },
+  { id: 3, title: "الرحلة", author: "باسم خندقجي", price: 170, category: "مغامرة", cover: "https://images.unsplash.com/photo-1495640388908-05fa85288e61?auto=format&fit=crop&w=500&q=80", desc: "قصة مليئة بالتحديات والمغامرات الإنسانية العميقة." },
+  { id: 4, title: "قواعد العشق الأربعون", author: "إليف شافاق", price: 210, category: "رومانسية", cover: "https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=500&q=80", desc: "رحلة صوفية تبحث عن الحب الحقيقي ومعاني الحياة والروح." },
+  { id: 5, title: "عندما يعزف الشيطان", author: "منى الشاذلي", price: 180, category: "رعب", cover: "https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?auto=format&fit=crop&w=500&q=80", desc: "حكاية مرعبة وغامضة تأخذك إلى أقصى حدود التشويق." },
+  { id: 6, title: "1984", author: "جورج أورويل", price: 160, category: "كلاسيكيات", cover: "https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=500&q=80", desc: "الرواية الديستوبية الشهيرة التي تحذر من السيطرة المطلقة." }
+];
+
+let cart = [];
+let currentList = books;
+
+function renderBooks(list) {
+  const grid = document.getElementById("bookGrid");
+  let favorites = JSON.parse(localStorage.getItem('taleora_favs')) || [];
+
+  if (list.length === 0) {
+    grid.innerHTML = `<p style="grid-column:1/-1;text-align:center;color:var(--muted);padding:40px;">لا توجد نتائج مطابقة.</p>`;
+    return;
+  }
+
+  grid.innerHTML = list.map(book => {
+    let isFav = favorites.includes(book.id);
+    return `
+      <div class="book-card" onclick="goToBook(${book.id})">
+        <div class="book-cover">
+          <img src="${book.cover}" alt="${book.title}" loading="lazy">
+          <button class="fav-action" onclick="event.stopPropagation(); toggleFavorite(${book.id})" style="color:${isFav ? 'var(--accent)' : '#fff'};">♥</button>
+        </div>
+        <div class="book-info">
+          <h3>${book.title}</h3>
+          <div class="book-author">${book.author}</div>
+          <div class="book-footer">
+            <span class="price">${book.price} ج.م</span>
+            <button class="add-cart-btn" onclick="event.stopPropagation(); addToCart(${book.id})">أضف للسلة</button>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function goToBook(id) {
+  window.location.href = `book.html?id=${id}`;
+}
+
+function toggleFavorite(id) {
+  let favorites = JSON.parse(localStorage.getItem('taleora_favs')) || [];
+  let index = favorites.indexOf(id);
+  if (index > -1) favorites.splice(index, 1);
+  else favorites.push(id);
+  localStorage.setItem('taleora_favs', JSON.stringify(favorites));
+  renderBooks(currentList);
+}
+
+function showFavoritesView() {
+  let favorites = JSON.parse(localStorage.getItem('taleora_favs')) || [];
+  currentList = books.filter(b => favorites.includes(b.id));
+  document.getElementById("sectionTitle").textContent = "رواياتك المفضلة ❤️";
+  renderBooks(currentList);
+}
+
+function addToCart(id) {
+  let book = books.find(b => b.id === id);
+  if (book) {
+    cart.push(book);
+    updateCartUI();
+    toggleCart();
+  }
+}
+
+function removeFromCart(index) {
+  cart.splice(index, 1);
+  updateCartUI();
+}
+
+function updateCartUI() {
+  document.getElementById("count").textContent = cart.length;
+  const listElem = document.getElementById("cartItemsList");
+  if (cart.length === 0) {
+    listElem.innerHTML = `<p style="color:var(--muted);text-align:center;padding:20px;">السلة فارغة حالياً.</p>`;
+  } else {
+    listElem.innerHTML = cart.map((item, idx) => `
+      <div class="cart-item">
+        <span>${item.title}</span>
+        <div style="display:flex;gap:15px;align-items:center;">
+          <b>${item.price} ج</b>
+          <button class="remove-btn" onclick="removeFromCart(${idx})">×</button>
+        </div>
+      </div>
+    `).join('');
+  }
+  document.getElementById("totalPrice").textContent = cart.reduce((sum, item) => sum + item.price, 0) + " جنيه";
+}
+
+// دالة مشتركة لتجهيز البيانات والرسالة
+function getOrderDetails() {
+  if (cart.length === 0) {
+    alert("السلة فارغة!");
+    return null;
+  }
+
+  let name = document.getElementById("custName").value.trim();
+  let phone = document.getElementById("custPhone").value.trim();
+  let address = document.getElementById("custAddress").value.trim();
+
+  if (!name || !phone || !address) {
+    alert("يرجى إدخال (الاسم، رقم الموبايل، والعنوان) لإتمام الطلب بنجاح.");
+    return null;
+  }
+
+  let booksListText = cart.map(item => `- ${item.title} (${item.price} ج.م)`).join('\n');
+  let totalPrice = document.getElementById("totalPrice").textContent;
+
+  let message = `🛒 *طلب جديد من موقع Taleora*\n\n`;
+  message += `👤 *الاسم:* ${name}\n`;
+  message += `📞 *الموبايل:* ${phone}\n`;
+  message += `📍 *العنوان:* ${address}\n\n`;
+  message += `📚 *الكتب المطلوبة:*\n${booksListText}\n\n`;
+  message += `💰 *الإجمالي:* ${totalPrice}`;
+
+  return { name, phone, message };
+}
+
+// تفريغ السلة والحقول بعد الطلب
+function resetCartAndInputs() {
+  cart = [];
+  document.getElementById("custName").value = "";
+  document.getElementById("custPhone").value = "";
+  document.getElementById("custAddress").value = "";
+  updateCartUI();
+  toggleCart();
+}
+
+// إتمام الشراء عبر واتساب
+function checkoutWhatsApp() {
+  let order = getOrderDetails();
+  if (!order) return;
+  let myWhatsAppNumber = "201055245130"; 
+  window.open(`https://wa.me/${myWhatsAppNumber}?text=${encodeURIComponent(order.message)}`, '_blank');
+  resetCartAndInputs();
+}
+
+// إتمام الشراء عبر تليجرام
+function checkoutTelegram() {
+  let order = getOrderDetails();
+  if (!order) return;
+  let telegramUser = "xyo_zakaria_x";
+  window.open(`https://t.me/${telegramUser}?text=${encodeURIComponent(order.message)}`, '_blank');
+  resetCartAndInputs();
+}
+
+// إتمام الشراء عبر إنستجرام
+function checkoutInstagram() {
+  let order = getOrderDetails();
+  if (!order) return;
+  let instaUrl = "https://www.instagram.com/yahia__160?igsi=cXJlc3VwZGFkbmdh";
+  alert(`شكراً لك يا ${order.name} ❤️\nسيتم توجيهك لصفحة إنستجرام، يرجى إرسال تفاصيل طلبك في رسالة خاصة.`);
+  window.open(instaUrl, '_blank');
+  resetCartAndInputs();
+}
+
+function handleSearch() {
+  let query = document.getElementById("searchInput").value.trim().toLowerCase();
+  currentList = books.filter(b => b.title.toLowerCase().includes(query) || b.author.toLowerCase().includes(query));
+  document.getElementById("sectionTitle").textContent = "نتائج البحث";
+  renderBooks(currentList);
+}
+
+function filterByCategory(category, element) {
+  document.querySelectorAll('.category-chip').forEach(chip => chip.classList.remove('active'));
+  element.classList.add('active');
+  if (category === 'الكل') {
+    currentList = books;
+    document.getElementById("sectionTitle").textContent = "مكتبة الروايات";
+  } else {
+    currentList = books.filter(b => b.category === category);
+    document.getElementById("sectionTitle").textContent = `تصنيف: ${category}`;
+  }
+  renderBooks(currentList);
+}
+
+function resetFilter() {
+  document.getElementById("searchInput").value = "";
+  currentList = books;
+  document.getElementById("sectionTitle").textContent = "مكتبة الروايات";
+  renderBooks(currentList);
+}
+
+function toggleMenu() { document.getElementById("menuDrawer").classList.toggle("open"); }
+function toggleCart() { document.getElementById("cartDrawer").classList.toggle("open"); }
+
+renderBooks(books);
+updateCartUI();
+</script>
+</body>
+</html>
