@@ -69,7 +69,7 @@ header{
 }
 .category-chip:hover, .category-chip.active{border-color:var(--gold);color:var(--gold2);background:var(--card-hover);}
 
-section{width:90%;max-width:1200px;margin:40px auto;}
+section{width:90%;max-width:1200px;margin:50px auto;}
 .section-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
 .section-header h2{font-size:24px;margin:0;position:relative;}
 .section-header h2::after{content:"";display:block;width:40px;height:3px;background:var(--gold);margin-top:6px;border-radius:2px;}
@@ -110,6 +110,24 @@ section{width:90%;max-width:1200px;margin:40px auto;}
 }
 .add-cart-btn:hover{background:var(--gold2);}
 
+/* قسم من نحن */
+.about-section{
+  background:linear-gradient(135deg, var(--card), var(--card-hover));
+  border:1px solid var(--line);border-radius:20px;padding:40px;display:flex;gap:30px;align-items:center;margin:60px auto;
+}
+.about-content h2{color:var(--gold2);margin-top:0;font-size:26px;}
+.about-content p{color:var(--muted);line-height:1.8;font-size:14px;margin:0;}
+
+/* قسم آراء العملاء */
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:20px;}
+.review-card{
+  background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;
+  display:flex;flex-direction:column;gap:10px;
+}
+.review-stars{color:var(--gold2);font-size:14px;}
+.review-text{color:var(--muted);font-size:13px;line-height:1.6;margin:0;}
+.review-author{color:var(--text);font-size:12px;font-weight:bold;margin-top:auto;}
+
 .drawer{
   position:fixed;inset:0 0 0 auto;width:min(380px, 90vw);background:#130f0d;
   z-index:100;padding:25px;box-shadow:-10px 0 30px rgba(0,0,0,0.7);
@@ -125,6 +143,7 @@ footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:13px;bor
 @media(max-width:600px){
   .grid{grid-template-columns:repeat(2, 1fr);gap:12px;}
   .book-cover{height:180px;}
+  .about-section{padding:20px;flex-direction:column;}
 }
 </style>
 </head>
@@ -148,6 +167,12 @@ footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:13px;bor
   </div>
 </div>
 
+<!-- قسم الترشيحات الخاصة والأكثر مبيعاً -->
+<section>
+  <div class="section-header"><h2>🔥 الأكثر مبيعاً وترشيحات Taleora</h2></div>
+  <div class="grid" id="featuredGrid"></div>
+</section>
+
 <section id="booksSection">
   <div class="section-header"><h2>التصنيفات</h2></div>
   <div class="categories">
@@ -163,6 +188,38 @@ footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:13px;bor
     <h2 id="sectionTitle">مكتبة الروايات</h2>
   </div>
   <div class="grid" id="bookGrid"></div>
+</section>
+
+<!-- قسم من نحن -->
+<section>
+  <div class="about-section">
+    <div class="about-content">
+      <h2>عن متجر Taleora</h2>
+      <p>نحن منصة متخصصة في عالم الكتب والروايات، نؤمن بأن كل كتاب يفتح نافذة جديدة على عوالم مذهلة. هدفنا هو توصيل شغف القراءة لكل قارئ في جميع محافظات مصر بأفضل الأسعار وأسرع خدمة توصيل.</p>
+    </div>
+  </div>
+</section>
+
+<!-- قسم آراء القرّاء -->
+<section>
+  <div class="section-header"><h2>⭐ آراء قرّائنا الأحباء</h2></div>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"التوصيل وصل في معدده وبحالة ممتازة جداً لمحافظة الإسكندرية، شكراً Taleora على المصداقية والكتب الرائعة."</p>
+      <div class="review-author">- محمود إبراهيم</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"خصومات الـ 50% حقيقية وساعدتني أجمع روايات خالد حسيني كلها بسهولة. أسعار ممتازة وتغليف ممتاز."</p>
+      <div class="review-author">- سارة أحمد</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"خدمة العملاء والتواصل عبر واتساب لإتمام الطلب كانت سريعة جداً. أنصح بالتعامل معهم بشدة."</p>
+      <div class="review-author">- كريم محمد</div>
+    </div>
+  </div>
 </section>
 
 <footer>
@@ -185,7 +242,6 @@ footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:13px;bor
   <h2 style="margin-top:0;">سلة المشتريات</h2>
   <div id="cartItemsList" style="margin-top:15px;"></div>
   
-  <!-- حقول إدخال بيانات العميل -->
   <div style="margin-top:15px;border-top:1px solid var(--line);padding-top:15px;display:flex;flex-direction:column;gap:10px;">
     <input type="text" id="custName" placeholder="الاسم الكريم" class="search" style="border-radius:8px;font-size:12px;padding:8px 12px;width:100%;max-width:100%;">
     <input type="tel" id="custPhone" placeholder="رقم الموبايل" class="search" style="border-radius:8px;font-size:12px;padding:8px 12px;width:100%;max-width:100%;">
@@ -206,7 +262,6 @@ footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:13px;bor
       <b style="color:var(--gold2);" id="totalPrice">70 جنيه</b>
     </div>
     
-    <!-- خيارات إتمام الطلب عبر وسائل التواصل المختلفة -->
     <div style="display:flex;flex-direction:column;gap:8px;">
       <button class="btn" style="width:100%;text-align:center;background:linear-gradient(135deg, #25D366, #128C7E);color:white;font-size:13px;padding:10px;" onclick="checkoutWhatsApp()">🟢 إتمام عبر واتساب</button>
       <button class="btn" style="width:100%;text-align:center;background:linear-gradient(135deg, #0088cc, #00aaee);color:white;font-size:13px;padding:10px;" onclick="checkoutTelegram()">🔵 إتمام عبر تليجرام</button>
@@ -267,6 +322,38 @@ function renderBooks(list) {
   }).join('');
 }
 
+// عرض الكتب الأكثر مبيعاً (مثلاً أول 4 كتب بخصم 50%)
+function renderFeaturedBooks() {
+  const featuredGrid = document.getElementById("featuredGrid");
+  const featured = books.filter(b => b.discount === "50%").slice(0, 4);
+  let favorites = JSON.parse(localStorage.getItem('taleora_favs')) || [];
+
+  featuredGrid.innerHTML = featured.map(book => {
+    let isFav = favorites.includes(book.id);
+    return `
+      <div class="book-card" onclick="goToBook(${book.id})">
+        <div class="book-cover">
+          <img src="${book.cover}" alt="${book.title}" loading="lazy">
+          <span class="discount-badge">خصم ${book.discount}</span>
+          <button class="fav-action" onclick="event.stopPropagation(); toggleFavorite(${book.id})" style="color:${isFav ? 'var(--accent)' : '#fff'};">♥</button>
+        </div>
+        <div class="book-info">
+          <h3>${book.title}</h3>
+          <div class="book-author">${book.author}</div>
+          <div class="book-desc">${book.desc}</div>
+          <div class="book-footer">
+            <div class="price-box">
+              ${book.oldPrice ? `<span class="old-price">${book.oldPrice} ج.م</span>` : ''}
+              <span class="price">${book.price} ج.م</span>
+            </div>
+            <button class="add-cart-btn" onclick="event.stopPropagation(); addToCart(${book.id})">أضف للسلة</button>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
 function goToBook(id) {
   window.location.href = `book.html?id=${id}`;
 }
@@ -278,6 +365,7 @@ function toggleFavorite(id) {
   else favorites.push(id);
   localStorage.setItem('taleora_favs', JSON.stringify(favorites));
   renderBooks(currentList);
+  renderFeaturedBooks();
 }
 
 function showFavoritesView() {
@@ -322,13 +410,12 @@ function updateCartUI() {
   `).join('');
 
   let subtotal = cart.reduce((sum, item) => sum + item.price, 0);
-  let total = subtotal + (cart.length > 0 ? shippingFee : 0);
+  let total = subtotal + shippingFee;
 
   document.getElementById("subtotalPrice").textContent = subtotal + " جنيه";
   document.getElementById("totalPrice").textContent = total + " جنيه";
 }
 
-// دالة مشتركة لتجهيز البيانات والرسالة
 function getOrderDetails() {
   if (cart.length === 0) {
     alert("السلة فارغة!");
@@ -360,7 +447,6 @@ function getOrderDetails() {
   return { name, phone, message };
 }
 
-// تفريغ السلة والحقول بعد الطلب
 function resetCartAndInputs() {
   cart = [];
   document.getElementById("custName").value = "";
@@ -370,31 +456,25 @@ function resetCartAndInputs() {
   toggleCart();
 }
 
-// إتمام الشراء عبر واتساب
 function checkoutWhatsApp() {
   let order = getOrderDetails();
   if (!order) return;
-  let myWhatsAppNumber = "201055245130"; 
-  window.open(`https://wa.me/${myWhatsAppNumber}?text=${encodeURIComponent(order.message)}`, '_blank');
+  window.open(`https://wa.me/201055245130?text=${encodeURIComponent(order.message)}`, '_blank');
   resetCartAndInputs();
 }
 
-// إتمام الشراء عبر تليجرام
 function checkoutTelegram() {
   let order = getOrderDetails();
   if (!order) return;
-  let telegramUser = "xyo_zakaria_x";
-  window.open(`https://t.me/${telegramUser}?text=${encodeURIComponent(order.message)}`, '_blank');
+  window.open(`https://t.me/xyo_zakaria_x?text=${encodeURIComponent(order.message)}`, '_blank');
   resetCartAndInputs();
 }
 
-// إتمام الشراء عبر إنستجرام
 function checkoutInstagram() {
   let order = getOrderDetails();
   if (!order) return;
-  let instaUrl = "https://www.instagram.com/yahia__160?igsi=cXJlc3VwZGFkbmdh";
   alert(`شكراً لك يا ${order.name} ❤️\nسيتم توجيهك لصفحة إنستجرام، يرجى إرسال تفاصيل طلبك في رسالة خاصة.`);
-  window.open(instaUrl, '_blank');
+  window.open("https://www.instagram.com/yahia__160?igsi=cXJlc3VwZGFkbmdh", '_blank');
   resetCartAndInputs();
 }
 
@@ -428,6 +508,7 @@ function resetFilter() {
 function toggleMenu() { document.getElementById("menuDrawer").classList.toggle("open"); }
 function toggleCart() { document.getElementById("cartDrawer").classList.toggle("open"); }
 
+renderFeaturedBooks();
 renderBooks(books);
 updateCartUI();
 </script>
