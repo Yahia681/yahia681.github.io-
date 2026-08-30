@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>تفاصيل الرواية | Taleora</title>
+<style>
+:root{--bg:#0d0a09;--card:#16120f;--card-hover:#1f1915;--gold:#d9a45e;--gold2:#f0c982;--text:#fff8ef;--muted:#a69788;--line:#ffffff15;--accent:#ff4757}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Tahoma,Arial,sans-serif}
+header{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:15px;padding:15px 5%;background:#0d0a0be8;backdrop-filter:blur(15px);border-bottom:1px solid var(--line)}
+.logo{font-size:22px;font-weight:900;color:var(--gold2);cursor:pointer;white-space:nowrap}
+.logo small{display:block;font-size:8px;letter-spacing:4px;color:#fff;text-align:center}
+.icon-btn{background:none;border:0;color:white;font-size:20px;cursor:pointer;position:relative;padding:5px;margin-right:auto}
+#count{position:absolute;top:-2px;right:-5px;background:var(--gold);color:#000;font-size:10px;font-weight:bold;padding:1px 5px;border-radius:50%}
+.main-wrapper{max-width:900px;margin:40px auto;padding:0 20px}
+.back{display:inline-block;margin-bottom:20px;color:var(--gold2);text-decoration:none;font-weight:bold;font-size:14px}
+.back:hover{text-decoration:underline}
+.container{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:30px;display:flex;gap:30px;flex-wrap:wrap;position:relative;overflow:hidden}
+.book-img-box{position:relative;width:250px;height:350px;border-radius:12px;overflow:hidden;background:#221a15;flex-shrink:0}
+.book-img{width:100%;height:100%;object-fit:cover}
+.discount-badge{position:absolute;top:10px;right:10px;background:var(--accent);color:#fff;font-size:11px;font-weight:bold;padding:4px 10px;border-radius:6px;z-index:2}
+.book-details{flex:1;min-width:250px;display:flex;flex-direction:column}
+h1{color:var(--gold2);margin-top:0;font-size:26px;margin-bottom:8px}
+.author{color:var(--muted);margin-bottom:15px;font-size:14px}
+.specs-box{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;background:#ffffff05;border:1px solid var(--line);padding:12px;border-radius:10px;margin:15px 0;font-size:12px}
+.spec-item{color:var(--muted)}
+.spec-item b{color:var(--text);display:block;margin-top:2px}
+.desc{color:#d0c4b4;line-height:1.7;margin-bottom:20px;font-size:13px}
+.price-action-area{display:flex;align-items:center;justify-content:space-between;margin-top:auto;border-top:1px solid var(--line);padding-top:15px;flex-wrap:wrap;gap:15px}
+.price-box{display:flex;flex-direction:column}
+.old-price{text-decoration:line-through;color:var(--muted);font-size:12px}
+.price{color:var(--gold2);font-size:22px;font-weight:bold}
+.action-buttons{display:flex;gap:8px;flex-wrap:wrap}
+.btn{border:0;border-radius:10px;padding:10px 20px;background:linear-gradient(135deg,var(--gold2),var(--gold));color:#1c110b;font-weight:900;cursor:pointer;transition:.2s;text-decoration:none;font-size:14px;display:inline-block;text-align:center}
+.btn:hover{filter:brightness(1.1);transform:translateY(-2px)}
+.read-btn{background:transparent;color:var(--gold2);border:1px solid var(--gold)}
+.drawer{position:fixed;inset:0 0 0 auto;width:min(380px,90vw);background:#130f0d;z-index:100;padding:25px;box-shadow:-10px 0 30px rgba(0,0,0,.7);transform:translateX(110%);transition:.3s cubic-bezier(.4,0,.2,1);overflow-y:auto}
+.drawer.open{transform:none}
+.close-btn{background:none;border:none;color:white;font-size:24px;cursor:pointer;float:left}
+.cart-item{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);font-size:13px}
+.remove-btn{background:none;border:none;color:var(--accent);cursor:pointer;font-size:16px}
+.search{width:100%;background:#ffffff08;border:1px solid var(--line);color:white;border-radius:8px;padding:8px 12px;outline:none;font-size:12px}
+footer{text-align:center;padding:30px 20px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);margin-top:50px}
+@media(max-width:600px){
+.container{flex-direction:column;align-items:center;text-align:center}
+.book-img-box{width:100%;height:300px}
+.specs-box{text-align:right}
+.price-action-area{justify-content:center;width:100%}
+.action-buttons{justify-content:center;width:100%}
+.action-buttons .btn{width:100%}
+}
+</style>
+</head>
+<body>
+<header>
+<div class="logo" onclick="window.location.href='index.html'">TALEORA<small>عالم الحكايات</small></div>
+<button class="icon-btn" onclick="toggleCart()">🛒<span id="count">0</span></button>
+</header>
+
+<div class="main-wrapper">
+<a href="index.html" class="back">← العودة للرئيسية والمكتبة</a>
+<div class="container" id="bookDetails">
+<p style="color:var(--muted);text-align:center;width:100%;">جاري تحميل تفاصيل الرواية...</p>
+</div>
+</div>
+
+<footer>
+<strong style="color:var(--gold2)">Taleora Store</strong><br>جميع الحقوق محفوظة © 2026 - التوصيل لجميع محافظات مصر
+</footer>
+
+<aside id="cartDrawer" class="drawer">
+<button class="close-btn" onclick="toggleCart()">×</button>
+<h2 style="margin-top:0;">سلة المشتريات</h2>
+<div id="cartItemsList" style="margin-top:15px;"></div>
+<div style="margin-top:15px;border-top:1px solid var(--line);padding-top:15px;display:flex;flex-direction:column;gap:10px;">
+<input type="text" id="custName" placeholder="الاسم الكريم" class="search">
+<input type="tel" id="custPhone" placeholder="رقم الموبايل" class="search">
+<textarea id="custAddress" placeholder="العنوان بالتفصيل (المحافظة، المنطقة، الشارع)" class="search" style="resize:none;height:65px;font-family:Tahoma;"></textarea>
+</div>
+<div style="margin-top:15px;border-top:1px solid var(--line);padding-top:15px;">
+<div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:8px;color:var(--muted);"><span>مجموع الكتب:</span><span id="subtotalPrice">0 جنيه</span></div>
+<div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:12px;color:var(--muted);"><span>مصاريف الشحن (لكل محافظات مصر):</span><span>70 جنيه</span></div>
+<div style="display:flex;justify-content:space-between;font-size:16px;margin-bottom:15px;border-top:1px dashed var(--line);padding-top:10px;"><span>الإجمالي الكلي:</span><b style="color:var(--gold2);" id="totalPrice">0 جنيه</b></div>
+<div style="display:flex;flex-direction:column;gap:8px;">
+<button class="btn" style="width:100%;background:linear-gradient(135deg,#25D366,#128C7E);color:white;font-size:13px;padding:10px" onclick="checkoutWhatsApp()">🟢 إتمام عبر واتساب</button>
+<button class="btn" style="width:100%;background:linear-gradient(135deg,#0088cc,#00aaee);color:white;font-size:13px;padding:10px" onclick="checkoutTelegram()">🔵 إتمام عبر تليجرام</button>
+<button class="btn" style="width:100%;background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);color:white;font-size:13px;padding:10px" onclick="checkoutInstagram()">🟣 إتمام عبر إنستجرام</button>
+</div>
+</div>
+</aside>
+
+<script>
+const books = [
+{id:1,title:"ألف شمس ساطعة",author:"خالد حسيني",publisher:"دار التنوير للطباعة والنشر",pages:432,year:2007,price:250,oldPrice:500,discount:"50%",category:"رومانسية",cover:"https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=500&q=80",desc:"رواية مؤثرة تأخذنا في رحلة عميقة داخل المجتمع الأفغاني ومعاناة النساء وسط الصراعات والحروب، تحكي قصة مريم وليلى اللتين تجمعهما الأقدار في قسوة الحياة لتنسجا معاً رابطة إنسانية لا تُفصم عراها."},
+{id:2,title:"خريف البراءة",author:"أحمد مراد",publisher:"دار الشروق",pages:310,year:2022,price:203,oldPrice:290,discount:"30%",category:"غموض",cover:"https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=500&q=80",desc:"عمل تشويقي استثنائي يأخذك في عوالم الغموض وكشف الأسرار النفسية والجرائم المعقدة بأسلوب سلس ومثير يحبس الأنفاس حتى الصفحة الأخيرة."},
+{id:3,title:"الرحلة",author:"باسم خندقجي",publisher:"الدار العربية للعلوم ناشرون",pages:240,year:2023,price:160,oldPrice:200,discount:"20%",category:"مغامرة",cover:"https://images.unsplash.com/photo-1495640388908-05fa85288e61?auto=format&fit=crop&w=500&q=80",desc:"قصة مليئة بالتحديات والمغامرات الإنسانية العميقة التي تلامس الروح والوجدان، تسلط الضوء على خبايا النفس البشرية وإصرارها على تخطي المستحيل."},
+{id:4,title:"قواعد العشق الأربعون",author:"إليف شافاق",publisher:"دار الأدب",pages:536,year:2010,price:115,oldPrice:230,discount:"50%",category:"رومانسية",cover:"https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=500&q=80",desc:"رحلة صوفية ساحرة تبحث عن الحب الحقيقي ومعاني الوجود الإنساني والسلام الداخلي من خلال حكايتين متوازيتين تعبران الزمن والمسافات."},
+{id:5,title:"عندما يعزف الشيطان",author:"منى الشاذلي",publisher:"عصير الكتب",pages:280,year:2021,price:147,oldPrice:210,discount:"30%",category:"رعب",cover:"https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?auto=format&fit=crop&w=500&q=80",desc:"حكاية مرعبة وغامضة تأخذك إلى أقصى حدود التشويق وما وراء الطبيعة، حيث تختلط الأحلام بالواقع في كابوس ممتع ومثير."},
+{id:6,title:"1984",author:"جورج أورويل",publisher:"كلمات للنشر",pages:320,year:1949,price:133,oldPrice:190,discount:"30%",category:"كلاسيكيات",cover:"https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=500&q=80",desc:"الرواية الديستوبية الشهيرة التي تحذر من المراقبة المطلقة وسلطة الأنظمة الحاكمة وأثرها على حرية الإنسان وفكره."},
+{id:7,title:"مترو الحلم الأخير",author:"عمرو عبد الحميد",publisher:"دارك للنشر",pages:350,year:2024,price:120,oldPrice:200,discount:"40%",category:"غموض",cover:"https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=500&q=80",desc:"عالم فانتازي فريد من نوعه يأخذك لمدن غامضة وقواعد قاسية للبقاء لا ترحم العابرين."},
+{id:8,title:"ما تبقى لكم",author:"غسان كنفاني",publisher:"مكتبة الآداب",pages:180,year:1966,price:90,oldPrice:150,discount:"40%",category:"كلاسيكيات",cover:"https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=500&q=80",desc:"رواية كلاسيكية قصيرة مليئة بالرمزية والعمق الإنساني والمشاعر الجياشة التي تبحث عن الهوية والذات."},
+{id:9,title:"أرض زيكولا",author:"عمرو عبد الحميد",publisher:"عصير الكتب",pages:288,year:2010,price:110,oldPrice:220,discount:"50%",category:"مغامرة",cover:"https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=500&q=80",desc:"حيث تعامل وحدات الذكاء بدلاً من الأموال، رحلة لا تُنسى في عالم فريد يغير منظورك لكل شيء."}
+];
+
+let cart=[];
+const shippingFee=70;
+const urlParams=new URLSearchParams(window.location.search);
+const bookId=parseInt(urlParams.get("id"));
+const book=books.find(b=>b.id===bookId);
+const container=document.getElementById("bookDetails");
+
+if(book){
+container.innerHTML=`
+<div class="book-img-box"><img src="${book.cover}" class="book-img" alt="${book.title}">${book.discount?`<span class="discount-badge">خصم ${book.discount}</span>`:""}</div>
+<div class="book-details">
+<h1>${book.title}</h1>
+<div class="author">المؤلف: ${book.author}</div>
+<div class="desc">${book.desc}</div>
+<div class="specs-box">
+<div class="spec-item">دار النشر: <b>${book.publisher}</b></div>
+<div class="spec-item">عدد الصفحات: <b>${book.pages} صفحة</b></div>
+<div class="spec-item">سنة الإصدار: <b>${book.year}</b></div>
+<div class="spec-item">التصنيف: <b>${book.category}</b></div>
+</div>
+<div class="price-action-area">
+<div class="price-box">${book.oldPrice?`<span class="old-price">${book.oldPrice} ج.م</span>`:""}<span class="price">${book.price} ج.م</span></div>
+<div class="action-buttons">
+<a class="btn read-btn" href="reader.html?id=${book.id}">📖 اقرأ الآن</a>
+<button class="btn" onclick="addToCartAndOpen(${book.id})">🛒 أضف للسلة واطلب الآن</button>
+</div>
+</div>
+</div>`;
+}else{
+container.innerHTML=`<p style="color:var(--muted);text-align:center;width:100%;">عذراً، لم يتم العثور على هذه الرواية.</p>`;
+}
+
+function addToCartAndOpen(id){let item=books.find(b=>b.id===id);if(item){cart.push(item);updateCartUI();toggleCart()}}
+function removeFromCart(index){cart.splice(index,1);updateCartUI()}
+function updateCartUI(){
+document.getElementById("count").textContent=cart.length;
+const listElem=document.getElementById("cartItemsList");
+if(cart.length===0){listElem.innerHTML=`<p style="color:var(--muted);text-align:center;padding:20px;">السلة فارغة حالياً.</p>`;document.getElementById("subtotalPrice").textContent="0 جنيه";document.getElementById("totalPrice").textContent="0 جنيه";return}
+listElem.innerHTML=cart.map((item,idx)=>`<div class="cart-item"><span>${item.title}</span><div style="display:flex;gap:15px;align-items:center;"><b>${item.price} ج</b><button class="remove-btn" onclick="removeFromCart(${idx})">×</button></div></div>`).join("");
+let subtotal=cart.reduce((sum,item)=>sum+item.price,0);
+document.getElementById("subtotalPrice").textContent=subtotal+" جنيه";
+document.getElementById("totalPrice").textContent=(subtotal+shippingFee)+" جنيه";
+}
+function getOrderDetails(){
+if(cart.length===0){alert("السلة فارغة!");return null}
+let name=document.getElementById("custName").value.trim(),phone=document.getElementById("custPhone").value.trim(),address=document.getElementById("custAddress").value.trim();
+if(!name||!phone||!address){alert("يرجى إدخال (الاسم، رقم الموبايل، والعنوان بالتفصيل) لإتمام الطلب بنجاح.");return null}
+let booksListText=cart.map(item=>`- ${item.title} (${item.price} ج.م)`).join("\n");
+let subtotal=cart.reduce((sum,item)=>sum+item.price,0),total=subtotal+shippingFee;
+let message=`🛒 *طلب جديد من صفحة تفاصيل الرواية - Taleora*\n\n👤 *الاسم:* ${name}\n📞 *الموبايل:* ${phone}\n📍 *العنوان:* ${address}\n\n📚 *الكتب المطلوبة:*\n${booksListText}\n\n📦 *مجموع الكتب:* ${subtotal} ج.م\n🚚 *مصاريف الشحن:* ${shippingFee} ج.م\n💰 *الإجمالي الكلي:* ${total} جنيه`;
+return {name,phone,message};
+}
+function resetCartAndInputs(){cart=[];document.getElementById("custName").value="";document.getElementById("custPhone").value="";document.getElementById("custAddress").value="";updateCartUI();toggleCart()}
+function checkoutWhatsApp(){let order=getOrderDetails();if(!order)return;window.open(`https://wa.me/201055245130?text=${encodeURIComponent(order.message)}`,"_blank");resetCartAndInputs()}
+function checkoutTelegram(){let order=getOrderDetails();if(!order)return;window.open(`https://t.me/xyo_zakaria_x?text=${encodeURIComponent(order.message)}`,"_blank");resetCartAndInputs()}
+function checkoutInstagram(){let order=getOrderDetails();if(!order)return;alert(`شكراً لك يا ${order.name} ❤️\nسيتم توجيهك لصفحة إنستجرام، يرجى إرسال تفاصيل طلبك في رسالة خاصة.`);window.open("https://www.instagram.com/yahia__160?igsi=cXJlc3VwZGFkbmdh","_blank");resetCartAndInputs()}
+function toggleCart(){document.getElementById("cartDrawer").classList.toggle("open")}
+updateCartUI();
+</script>
+</body>
+</html>
