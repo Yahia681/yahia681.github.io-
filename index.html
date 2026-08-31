@@ -162,7 +162,7 @@ footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:13px;bor
   <div>
     <div class="shipping-badge">🚚 متاح التوصيل لكل محافظات مصر (سعر الشحن 70 ج.م فقط)</div>
     <h1>كل حكاية لها بداية...<br><span>وكل رواية لها عالم.</span></h1>
-    <p>استمتع بتجربة قراءة فريدة واستكشف أفضل الروايات العربية والعالمية مع خصومات تصل إلى 50%.</p>
+    <p>استمتع بتجربة قراءة فريدة واستكشف أفضل الروايات العربية والعالمية مع خصومات مميزة.</p>
     <a href="#booksSection" class="btn">استكشف الروايات الآن</a>
   </div>
 </div>
@@ -177,9 +177,9 @@ footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:13px;bor
   <div class="section-header"><h2>التصنيفات</h2></div>
   <div class="categories">
     <div class="category-chip active" onclick="filterByCategory('الكل', this)">الكل</div>
-    <div class="category-chip" onclick="filterByCategory('رومانسية', this)">❤️ رومانسية</div>
-    <div class="category-chip" onclick="filterByCategory('غموض', this)">🔎 غموض</div>
     <div class="category-chip" onclick="filterByCategory('رعب', this)">👻 رعب</div>
+    <div class="category-chip" onclick="filterByCategory('غموض', this)">🔎 غموض</div>
+    <div class="category-chip" onclick="filterByCategory('رومانسية', this)">❤️ رومانسية</div>
     <div class="category-chip" onclick="filterByCategory('مغامرة', this)">🗺️ مغامرة</div>
     <div class="category-chip" onclick="filterByCategory('كلاسيكيات', this)">📜 كلاسيكيات</div>
   </div>
@@ -211,12 +211,12 @@ footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:13px;bor
     </div>
     <div class="review-card">
       <div class="review-stars">★★★★★</div>
-      <p class="review-text">"خصومات الـ 50% حقيقية وساعدتني أجمع روايات خالد حسيني كلها بسهولة. أسعار ممتازة وتغليف ممتاز."</p>
+      <p class="review-text">"أسعار ممتازة وروايات رعب وتشويق أصلية وصلتني سليمة تماماً. أنصح بالتعامل معهم بشدة."</p>
       <div class="review-author">- سارة أحمد</div>
     </div>
     <div class="review-card">
       <div class="review-stars">★★★★★</div>
-      <p class="review-text">"خدمة العملاء والتواصل عبر واتساب لإتمام الطلب كانت سريعة جداً. أنصح بالتعامل معهم بشدة."</p>
+      <p class="review-text">"خدمة العملاء والتواصل عبر واتساب لإتمام الطلب كانت سريعة جداً."</p>
       <div class="review-author">- كريم محمد</div>
     </div>
   </div>
@@ -272,16 +272,16 @@ footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:13px;bor
 
 <script>
 const books = [
-  { id: 1, title: "ألف شمس ساطعة", author: "خالد حسيني", price: 250, oldPrice: 500, discount: "50%", category: "رومانسية", cover: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=500&q=80", desc: "رواية مؤثرة تأخذنا في رحلة عميقة داخل المجتمع الأفغاني ومعاناة النساء وسط الصراعات." },
-  { id: 2, title: "خريف البراءة", author: "أحمد مراد", price: 203, oldPrice: 290, discount: "30%", category: "غموض", cover: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=500&q=80", desc: "عمل تشويقي استثنائي يأخذك في عوالم الغموض وكشف الأسرار النفسية والجرائم المعقدة." },
-  { id: 3, title: "الرحلة", author: "باسم خندقجي", price: 160, oldPrice: 200, discount: "20%", category: "مغامرة", cover: "https://images.unsplash.com/photo-1495640388908-05fa85288e61?auto=format&fit=crop&w=500&q=80", desc: "قصة مليئة بالتحديات والمغامرات الإنسانية العميق التي تلامس الروح والوجدان." },
-  { id: 4, title: "قواعد العشق الأربعون", author: "إليف شافاق", price: 115, oldPrice: 230, discount: "50%", category: "رومانسية", cover: "https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=500&q=80", desc: "رحلة صوفية ساحرة تبحث عن الحب الحقيقي ومعاني الوجود الإنساني والسلام الداخلي." },
-  { id: 5, title: "عندما يعزف الشيطان", author: "منى الشاذلي", price: 147, oldPrice: 210, discount: "30%", category: "رعب", cover: "https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?auto=format&fit=crop&w=500&q=80", desc: "حكاية مرعبة وغامضة تأخذك إلى أقصى حدود التشويق وما وراء الطبيعة." },
-  { id: 6, title: "1984", author: "جورج أورويل", price: 133, oldPrice: 190, discount: "30%", category: "كلاسيكيات", cover: "https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=500&q=80", desc: "الرواية الديستوبية الشهيرة التي تحذر من المراقبة المطلقة وسلطة الأنظمة الحاكمة." },
-  { id: 7, title: "مترو الحلم الأخير", author: "عمرو عبد الحميد", price: 120, oldPrice: 200, discount: "40%", category: "غموض", cover: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=500&q=80", desc: "عالم فانتازي فريد من نوعه يأخذك لمدن غامضة وقواعد قاسية للبقاء." },
-  { id: 8, title: "ما تبقى لكم", author: "غسان كنفاني", price: 90, oldPrice: 150, discount: "40%", category: "كلاسيكيات", cover: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=500&q=80", desc: "رواية كلاسيكية قصيرة مليئة بالرمزية والعمق الإنساني والمشاعر الجياشة." },
-  { id: 9, title: "أرض زيكولا", author: "عمرو عبد الحميد", price: 110, oldPrice: 220, discount: "50%", category: "مغامرة", cover: "https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=500&q=80", desc: "حيث تعامل وحدات الذكاء بدلاً من الأموال، رحلة لا تُنسى في عالم فريد." },
-  { id: 10, title: "سكوربيوس (الجزء الثاني)", author: "شهد قربان", price: 450, oldPrice: 600, discount: "25%", category: "مغامرة", cover: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=500&q=80", desc: "تستمر مغامرة سكوربيوس ودارلين بعد هجوم أناصوفيا المتوحش، وهذه المرة في عالم مورغوس." }
+  { id: 1, title: "خوف (الجزء الأول)", author: "أسامة المسلم", price: 180, oldPrice: 250, discount: "28%", category: "رعب", cover: "https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?auto=format&fit=crop&w=500&q=80", desc: "رحلة مرعبة في عالم الجن والأرواح من منظور شاب يجد نفسه محاطاً بعالم خفي مرعب." },
+  { id: 2, title: "صانع الظلام", author: "تامر إبراهيم", price: 140, oldPrice: 200, discount: "30%", category: "رعب", cover: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=500&q=80", desc: "مجموعة قصصية مرعبة تأخذ القارئ إلى كواليس الخوف البشري والظلام النفسي." },
+  { id: 3, title: "بساتين عربستان", author: "أسامة المسلم", price: 220, oldPrice: 300, discount: "26%", category: "مغامرة", cover: "https://images.unsplash.com/photo-1495640388908-05fa85288e61?auto=format&fit=crop&w=500&q=80", desc: "ملحمة خيالية ومغامرة مشوقة تدور حول ساحرتين وتحديات الصراع والقبائل في عصور قديمة." },
+  { id: 4, title: "ساق البامبو", author: "سعود السنعوسي", price: 210, oldPrice: 300, discount: "30%", category: "كلاسيكيات", cover: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=500&q=80", desc: "رواية حائزة على جائزة بوكر العربية، تحكي قصة شاب مولود لأم كويتية وأب فلبيني ومعاناة الهوية." },
+  { id: 5, title: "في قلبي أنثى عبرية", author: "خولة حمدي", price: 160, oldPrice: 220, discount: "27%", category: "رومانسية", cover: "https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=500&q=80", desc: "قصة حقيقية رومانسية واجتماعية مؤثرة عن فتاة يهودية تتبناها عائلة مسلمة في تونس وسط ظروف عصيبة." },
+  { id: 6, title: "هيبتا", author: "محمد صادق", price: 130, oldPrice: 180, discount: "28%", category: "رومانسية", cover: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=500&q=80", desc: "رحلة تبحر في مراحل الحب السبعة من البداية وحتى النهاية وتحليل النفس البشرية العاطفية." },
+  { id: 7, title: "دراسة في اللون القرمزي (شارلوك هولمز)", author: "آرثر كونان دويل", price: 110, oldPrice: 150, discount: "26%", category: "غموض", cover: "https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=500&q=80", desc: "أول ظهور للمحقق الاسطوري شارلوك هولمز ودكتور واتسون في جريمة غامضة ومحيرة." },
+  { id: 8, title: "الأسود يليق بك", author: "أحلام مستغانمي", price: 190, oldPrice: 260, discount: "27%", category: "رومانسية", cover: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=500&q=80", desc: "رواية عاطفية راقية تعبر عن العشق والكبرياء وثأر المشاعر بين مطربة جزائرية وثري عربي." },
+  { id: 9, title: "ثلاثية غرناطة", author: "رضوى عاشور", price: 320, oldPrice: 450, discount: "28%", category: "كلاسيكيات", cover: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=500&q=80", desc: "ملحمة تاريخية وإنسانية رصينة توثق سقوط الأندلس وتفاصيل حياة عائلة أبو جعفر في غرناطة." },
+  { id: 10, title: "عالم صوفي", author: "جوستاين غاردر", price: 240, oldPrice: 350, discount: "31%", category: "غموض", cover: "https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=500&q=80", desc: "رواية فلسفية غامضة تأخذ فتاة صغيرة في رحلة تاريخية لاكتشاف أسئلة الوجود الكبرى." }
 ];
 
 let cart = [];
@@ -323,10 +323,10 @@ function renderBooks(list) {
   }).join('');
 }
 
-// عرض الكتب الأكثر مبيعاً (مثلاً أول 4 كتب بخصم 50%)
+// عرض الكتب الأكثر مبيعاً (أول 4 كتب مميزة)
 function renderFeaturedBooks() {
   const featuredGrid = document.getElementById("featuredGrid");
-  const featured = books.filter(b => b.discount === "50%").slice(0, 4);
+  const featured = books.slice(0, 4);
   let favorites = JSON.parse(localStorage.getItem('taleora_favs')) || [];
 
   featuredGrid.innerHTML = featured.map(book => {
