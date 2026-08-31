@@ -10,12 +10,13 @@
 <style>
 
 :root{
-  --bg:#100d0b;
-  --card:#191411;
+  --bg:#0d0a09;
+  --card:#16120f;
   --text:#fff8ef;
-  --muted:#b9aa9b;
-  --gold:#f0c982;
-  --line:#ffffff18;
+  --muted:#a69788;
+  --gold:#d9a45e;
+  --gold2:#f0c982;
+  --line:#ffffff15;
 }
 
 *{
@@ -38,6 +39,7 @@ body.reading{
   --text:#30261e;
   --muted:#75685b;
   --gold:#8b5a25;
+  --gold2:#5a3812;
   --line:#00000015;
 }
 
@@ -52,10 +54,10 @@ header{
   justify-content:space-between;
   align-items:center;
 
-  padding:14px 6%;
+  padding:15px 6%;
 
-  background:#100d0bed;
-  backdrop-filter:blur(12px);
+  background:#0d0a0be8;
+  backdrop-filter:blur(15px);
 
   border-bottom:1px solid var(--line);
 }
@@ -65,8 +67,8 @@ body.reading header{
 }
 
 .logo{
-  color:var(--gold);
-  font-size:23px;
+  color:var(--gold2);
+  font-size:22px;
   font-weight:900;
 }
 
@@ -74,7 +76,7 @@ body.reading header{
   display:block;
   color:var(--text);
   font-size:8px;
-  letter-spacing:5px;
+  letter-spacing:4px;
   text-align:center;
 }
 
@@ -85,6 +87,7 @@ body.reading header{
   padding:9px 14px;
   border-radius:9px;
   cursor:pointer;
+  font-size:13px;
 }
 
 /* أدوات القراءة */
@@ -111,6 +114,7 @@ body.reading header{
   border-radius:9px;
 
   cursor:pointer;
+  font-size:13px;
 }
 
 /* الصفحة */
@@ -128,12 +132,14 @@ body.reading header{
 }
 
 .title h1{
-  font-size:36px;
+  font-size:32px;
   margin:0 0 10px;
+  color:var(--gold2);
 }
 
 .author{
-  color:var(--gold);
+  color:var(--muted);
+  font-size:14px;
 }
 
 /* الكتاب */
@@ -155,11 +161,12 @@ body.reading header{
 .chapter{
   text-align:center;
 
-  color:var(--gold);
+  color:var(--gold2);
 
   font-size:22px;
 
   margin-bottom:30px;
+  font-weight:bold;
 }
 
 #story{
@@ -182,9 +189,9 @@ body.reading header{
 }
 
 .nav{
-  background:var(--gold);
+  background:linear-gradient(135deg, var(--gold2), var(--gold));
 
-  color:#24170d;
+  color:#1c110b;
 
   border:0;
 
@@ -195,6 +202,7 @@ body.reading header{
   cursor:pointer;
 
   font-weight:900;
+  font-size:13px;
 }
 
 .nav:disabled{
@@ -220,6 +228,7 @@ footer{
   border-top:1px solid var(--line);
 
   color:var(--muted);
+  font-size:13px;
 }
 
 /* الموبايل */
@@ -227,7 +236,7 @@ footer{
 @media(max-width:600px){
 
   .title h1{
-    font-size:29px;
+    font-size:26px;
   }
 
   .content{
@@ -255,7 +264,7 @@ footer{
 Taleora
 
 <small>
-TALEORA
+عالم الحكايات
 </small>
 
 </div>
@@ -264,7 +273,7 @@ TALEORA
 class="back"
 onclick="goBack()"
 >
-← رجوع
+← رجوع لتفاصيل الرواية
 </button>
 
 </header>
@@ -278,14 +287,14 @@ onclick="goBack()"
 class="tool"
 onclick="changeFont(1)"
 >
-🔤 تكبير
+🔤 تكبير الخط
 </button>
 
 <button
 class="tool"
 onclick="changeFont(-1)"
 >
-🔡 تصغير
+🔡 تصغير الخط
 </button>
 
 <button
@@ -381,8 +390,8 @@ id="progress"
 
 <footer>
 
-<strong style="color:#e8b56e">
-Taleora
+<strong style="color:var(--gold2)">
+Taleora Store
 </strong>
 
 <br><br>
@@ -395,7 +404,7 @@ Taleora
 <script>
 
 /* =========================
-   بيانات الروايات
+   بيانات الروايات (المتطابقة مع المتجر)
 ========================= */
 
 const books={
@@ -426,45 +435,35 @@ author:"منى الشاذلي"
 },
 
 6:{
-title:"ليلة لا تنتهي",
-author:"محمد صادق"
-},
-
-7:{
 title:"1984",
 author:"جورج أورويل"
 },
 
+7:{
+title:"مترو الحلم الأخير",
+author:"عمرو عبد الحميد"
+},
+
 8:{
-title:"مئة عام من العزلة",
-author:"غابرييل غارسيا ماركيز"
+title:"ما تبقى لكم",
+author:"غسان كنفاني"
 },
 
 9:{
-title:"الحصان الأسود",
-author:"أحمد خالد توفيق"
+title:"أرض زيكولا",
+author:"عمرو عبد الحميد"
 },
 
 10:{
-title:"الأمير الصغير",
-author:"أنطوان دو سانت"
-},
-
-11:{
-title:"تذكرة إلى سرمد",
-author:"أحمد مراد"
-},
-
-12:{
-title:"رجال في الشمس",
-author:"غسان كنفاني"
+title:"سكوربيوس (الجزء الثاني)",
+author:"شهد قربان"
 }
 
 };
 
 
 /* =========================
-   معرفة الرواية
+   معرفة الرواية الحالية
 ========================= */
 
 const params=
@@ -480,7 +479,7 @@ books[bookId];
 
 
 /* =========================
-   عرض الرواية
+   عرض بيانات الرواية
 ========================= */
 
 if(book){
@@ -490,13 +489,16 @@ document.getElementById("bookTitle")
 
 document.getElementById("bookAuthor")
 .textContent=
-"✍️ "+book.author;
+"✍️ المؤلف: "+book.author;
 
+} else {
+document.getElementById("bookTitle")
+.textContent="رواية غير موجودة";
 }
 
 
 /* =========================
-   الفصول
+   الفصول التجريبية
 ========================= */
 
 const chapters=[
@@ -586,6 +588,8 @@ localStorage.getItem(
 
 function renderChapter(){
 
+if (!chapters[currentChapter]) return;
+
 const chapter=
 chapters[currentChapter];
 
@@ -605,7 +609,7 @@ document.getElementById("progress")
 chapters.length;
 
 
-/* تعطيل الأزرار */
+/* تعطيل الأزرار عند الأطراف */
 
 document.getElementById("previous")
 .disabled=
@@ -617,7 +621,7 @@ currentChapter===
 chapters.length-1;
 
 
-/* حفظ آخر فصل */
+/* حفظ آخر فصل تم قراءته محلياً */
 
 localStorage.setItem(
 "taleora_chapter_"+bookId,
@@ -677,7 +681,7 @@ behavior:"smooth"
 
 
 /* =========================
-   حجم الخط
+   تحكم بحجم الخط
 ========================= */
 
 let fontSize=18;
@@ -700,7 +704,7 @@ fontSize+"px";
 
 
 /* =========================
-   وضع القراءة
+   تبديل وضع القراءة النهاري/الليلي
 ========================= */
 
 function toggleReadingMode(){
@@ -713,7 +717,7 @@ document.body.classList.toggle(
 
 
 /* =========================
-   رجوع
+   الرجوع لصفحة تفاصيل الرواية
 ========================= */
 
 function goBack(){
@@ -725,7 +729,7 @@ window.location.href=
 
 
 /* =========================
-   تشغيل
+   التشغيل الأولي
 ========================= */
 
 renderChapter();
@@ -734,4 +738,4 @@ renderChapter();
 
 </body>
 
-  </html>
+</html>
