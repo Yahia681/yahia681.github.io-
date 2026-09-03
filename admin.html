@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Taleora | لوحة تحكم الطلبات</title>
+<style>
+:root{
+  --bg:#0d0a09;
+  --card:#16120f;
+  --card-hover:#1f1915;
+  --gold:#d9a45e;
+  --gold2:#f0c982;
+  --text:#fff8ef;
+  --muted:#a69788;
+  --line:#ffffff15;
+  --accent:#ff4757;
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Tahoma,Arial,sans-serif;padding:20px;}
+.container{max-width:900px;margin:0 auto;}
+header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:15px;margin-bottom:30px;}
+h1{color:var(--gold2);font-size:24px;margin:0;}
+.btn{
+  border:0;border-radius:8px;padding:8px 16px;
+  background:linear-gradient(135deg, var(--gold2), var(--gold));
+  color:#1c110b;font-weight:bold;cursor:pointer;transition:0.2s;text-decoration:none;font-size:12px;
+}
+.btn-danger{background:var(--accent);color:#fff;}
+.btn:hover{filter:brightness(1.1);}
+.orders-grid{display:flex;flex-direction:column;gap:15px;}
+.order-card{
+  background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;
+  display:flex;flex-direction:column;gap:12px;position:relative;
+}
+.order-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:10px;}
+.order-id{color:var(--gold2);font-weight:bold;font-size:16px;}
+.order-date{color:var(--muted);font-size:11px;}
+.order-body{display:grid;grid-template-columns: 1fr 1fr;gap:15px;font-size:13px;}
+@media(max-width:600px){.order-body{grid-template-columns:1fr;}}
+.customer-info p{margin:4px 0;color:var(--muted);}
+.customer-info b{color:var(--text);}
+.items-list{background:#ffffff05;border-radius:8px;padding:10px;}
+.item-row{display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:1px dashed var(--line);}
+.item-row:last-child{border-bottom:none;}
+.order-footer{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:10px;margin-top:5px;}
+.total-price{color:var(--gold2);font-weight:bold;font-size:15px;}
+.empty-state{text-align:center;padding:50px;color:var(--muted);font-size:16px;}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <div>
+      <h1>لوحة تحكم طلبات Taleora 📦</h1>
+      <p style="color:var(--muted);font-size:12px;margin:5px 0 0;">هنا يمكنك متابعة جميع الأوردرات التي تم إتمامها من الموقع.</p>
+    </div>
+    <div style="display:flex;gap:10px;">
+      <a href="index.html" class="btn">🏠 الرئيسية</a>
+      <button class="btn btn-danger" onclick="clearAllOrders()">🗑️ مسح كل الطلبات</button>
+    </div>
+  </header>
+
+  <div id="ordersContainer" class="orders-grid">
+    <!-- سيتم تعبئة الطلبات هنا تلقائياً -->
+  </div>
+</div>
+
+<script>
+function renderOrders() {
+  const container = document.getElementById("ordersContainer");
+  let orders = JSON.parse(localStorage.getItem("taleora_orders") || "[]");
+
+  if (orders.length === 0) {
+    container.innerHTML = `<div class="empty-state">لا توجد طلبات جديدة حتى الآن 📭</div>`;
+    return;
+  }
+
+  // ترتيب الطلبات بحيث الأحدث يظهر أولاً
+  orders.reverse();
+
+  container.innerHTML = orders.map((order, index) => {
+    let itemsHtml = order.items.map(item => `
+      <div class="item-row">
+        <span>📖 ${item.title}</span>
+        <b>${item.price} ج.م</b>
+      </div>
+    `).join('');
+
+    return `
+      <div class="order-card">
+        <div class="order-header">
+          <span class="order-id">طلب رقم: #${order.orderId}</span>
+          <span class="order-date">📅 ${order.date}</span>
+        </div>
+        
+        <div class="order-body">
+          <div class="customer-info">
+            <p>اسم العميل: <b>${order.name}</b></p>
+            <p>رقم الموبايل: <b>${order.phone}</b></p>
+            <p>العنوان: <b>${order.address}</b></p>
+          </div>
+          
+          <div class="items-list">
+            <span style="color:var(--muted);font-size:11px;display:block;margin-bottom:6px;">الكتب المطلوبة:</span>
+            ${itemsHtml}
+          </div>
+        </div>
+
+        <div class="order-footer">
+          <span class="total-price">الإجمالي الكلي (شامل الشحن): ${order.total} ج.م</span>
+          <button class="btn btn-danger" style="padding:4px 10px;font-size:11px;" onclick="deleteOrder(${orders.length - 1 - index})">حذف الطلب</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function deleteOrder(realIndex) {
+  if (confirm("هل أنت متأكد من حذف هذا الطلب؟")) {
+    let orders = JSON.parse(localStorage.getItem("taleora_orders") || "[]");
+    orders.splice(realIndex, 1);
+    localStorage.setItem("taleora_orders", JSON.stringify(orders));
+    renderOrders();
+  }
+}
+
+function clearAllOrders() {
+  if (confirm("تحذير: سيتم مسح جميع الطلبات المسجلة نهائياً! هل أنت متأكد؟")) {
+    localStorage.removeItem("taleora_orders");
+    renderOrders();
+  }
+}
+
+renderOrders();
+</script>
+
+</body>
+</html>
