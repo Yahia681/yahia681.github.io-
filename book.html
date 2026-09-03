@@ -135,37 +135,20 @@ footer{text-align:center;padding:30px 20px;color:var(--muted);font-size:13px;bor
     </div>
   </div>
 </aside>
+<script src="books.js"></script>
 
 <script>
-const books = [
-  { id: 1, title: "ألف شمس ساطعة", author: "خالد حسيني", publisher: "دار التنوير للطباعة والنشر", pages: 432, year: 2007, price: 250, oldPrice: 500, discount: "50%", category: "رومانسية", cover: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=500&q=80", desc: "رواية مؤثرة تأخذنا في رحلة عميقة داخل المجتمع الأفغاني ومعاناة النساء وسط الصراعات والحروب، تحكي قصة مريم وليلى اللتين تجمعهما الأقدار في قسوة الحياة لتنسجا معاً رابطة إنسانية لا تُفصم عراها." },
-
-  { id: 2, title: "خريف البراءة", author: "أحمد مراد", publisher: "دار الشروق", pages: 310, year: 2022, price: 203, oldPrice: 290, discount: "30%", category: "غموض", cover: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=500&q=80", desc: "عمل تشويقي استثنائي يأخذك في عوالم الغموض وكشف الأسرار النفسية والجرائم المعقدة بأسلوب سلس ومثير يحبس الأنفاس حتى الصفحة الأخيرة." },
-
-  { id: 3, title: "الرحلة", author: "باسم خندقجي", publisher: "الدار العربية للعلوم ناشرون", pages: 240, year: 2023, price: 160, oldPrice: 200, discount: "20%", category: "مغامرة", cover: "https://images.unsplash.com/photo-1495640388908-05fa85288e61?auto=format&fit=crop&w=500&q=80", desc: "قصة مليئة بالتحديات والمغامرات الإنسانية العميقة التي تلامس الروح والوجدان، تسلط الضوء على خبايا النفس البشرية وإصرارها على تخطي المستحيل." },
-
-  { id: 4, title: "قواعد العشق الأربعون", author: "إليف شافاق", publisher: "دار الأدب", pages: 536, year: 2010, price: 115, oldPrice: 230, discount: "50%", category: "رومانسية", cover: "https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=500&q=80", desc: "رحلة صوفية ساحرة تبحث عن الحب الحقيقي ومعاني الوجود الإنساني والسلام الداخلي من خلال حكايتين متوازيتين تعبران الزمن والمسافات." },
-
-  { id: 5, title: "عندما يعزف الشيطان", author: "منى الشاذلي", publisher: "عصير الكتب", pages: 280, year: 2021, price: 147, oldPrice: 210, discount: "30%", category: "رعب", cover: "https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?auto=format&fit=crop&w=500&q=80", desc: "حكاية مرعبة وغامضة تأخذك إلى أقصى حدود التشويق وما وراء الطبيعة، حيث تختلط الأحلام بالواقع في كابوس ممتع ومثير." },
-
-  { id: 6, title: "1984", author: "جورج أورويل", publisher: "كلمات للنشر", pages: 320, year: 1949, price: 133, oldPrice: 190, discount: "30%", category: "كلاسيكيات", cover: "https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=500&q=80", desc: "الرواية الديستوبية الشهيرة التي تحذر من المراقبة المطلقة وسلطة الأنظمة الحاكمة وأثرها على حرية الإنسان وفكره." },
-
-  { id: 7, title: "مترو الحلم الأخير", author: "عمرو عبد الحميد", publisher: "دارك للنشر", pages: 350, year: 2024, price: 120, oldPrice: 200, discount: "40%", category: "غموض", cover: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=500&q=80", desc: "عالم فانتازي فريد من نوعه يأخذك لمدن غامضة وقواعد قاسية للبقاء لا ترحم العابرين." },
-
-  { id: 8, title: "ما تبقى لكم", author: "غسان كنفاني", publisher: "مكتبة الآداب", pages: 180, year: 1966, price: 90, oldPrice: 150, discount: "40%", category: "كلاسيكيات", cover: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=500&q=80", desc: "رواية كلاسيكية قصيرة مليئة بالرمزية والعمق الإنساني والمشاعر الجياشة التي تبحث عن الهوية والذات." },
-
-  { id: 9, title: "أرض زيكولا", author: "عمرو عبد الحميد", publisher: "عصير الكتب", pages: 288, year: 2010, price: 110, oldPrice: 220, discount: "50%", category: "مغامرة", cover: "https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=500&q=80", desc: "حيث تعامل وحدات الذكاء بدلاً من الأموال، رحلة لا تُنسى في عالم فريد يغير منظورك لكل شيء." },
-
-  { id: 10, title: "سكوربيوس (الجزء الثاني)", author: "شهد قربان", publisher: "دار الآداب العربي", pages: 340, year: 2024, price: 450, oldPrice: 600, discount: "25%", category: "مغامرة", cover: "images/scorpius2.jpg", desc: "تستمر مغامرة سكوربيوس ودارلين بعد هجوم أناصوفيا المتوحش، وهذه المرة في عالم مورغوس، حيث الأسرار، الحقائق، الخيانات، والفوضى التي ستغير كل شيء... وحتى مصير علاقتهما!" }
-];
-
 let cart = [];
 const shippingFee = 70;
 
 const urlParams = new URLSearchParams(window.location.search);
 const bookId = parseInt(urlParams.get('id'));
 const book = books.find(b => b.id === bookId);
+
 const container = document.getElementById('bookDetails');
+
+
+
 
 if(book) {
   container.innerHTML = `
