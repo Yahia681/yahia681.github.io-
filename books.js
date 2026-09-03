@@ -130,7 +130,7 @@ const books = [
     oldPrice: 450,
     discount: "28%",
     category: "كلاسيكيات",
-    cover: "images/granada.jpg",
+    cover: "images/gharnata.jpg ",
     desc: "ملحمة تاريخية تتناول سقوط الأندلس."
   },
 
@@ -160,7 +160,7 @@ const books = [
     oldPrice: 600,
     discount: "25%",
     category: "مغامرة",
-    cover: "images/scorpius2.jpg",
+    cover: "images/scorbeus2.jpg ",
     desc: "تستمر مغامرة سكوربيوس في عالم مليء بالأسرار والخيانات والمفاجآت."
   }
 ];
