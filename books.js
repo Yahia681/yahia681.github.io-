@@ -120,19 +120,19 @@ const books = [
   },
 
   {
-    id: 9,
-    title: "ثلاثية غرناطة",
-    author: "رضوى عاشور",
-    publisher: "دار الشروق",
-    pages: 500,
-    year: 1994,
-    price: 320,
-    oldPrice: 450,
-    discount: "28%",
-    category: "كلاسيكيات",
-    cover: "images/gharnata.jpg ",
-    desc: "ملحمة تاريخية تتناول سقوط الأندلس."
-  },
+  id: 9,
+  title: "ثلاثية غرناطة",
+  author: "رضوى عاشور",
+  publisher: "دار الشروق",
+  pages: 500,
+  year: 1994,
+  price: 320,
+  oldPrice: 450,
+  discount: "28%",
+  category: "كلاسيكيات",
+  cover: "images/gharnata.jpg",
+  desc: "ملحمة تاريخية تتناول سقوط الأندلس."
+},
 
   {
     id: 10,
