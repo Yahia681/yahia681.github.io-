@@ -269,26 +269,15 @@ footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:13px;bor
     </div>
   </div>
 </aside>
+  <script src="books.js"></script>
 
 <script>
-const books = [
-  { id: 1, title: "خوف (الجزء الأول)", author: "أسامة المسلم", price: 180, oldPrice: 250, discount: "28%", category: "رعب", cover: "https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?auto=format&fit=crop&w=500&q=80", desc: "رحلة مرعبة في عالم الجن والأرواح من منظور شاب يجد نفسه محاطاً بعالم خفي مرعب." },
-  { id: 2, title: "صانع الظلام", author: "تامر إبراهيم", price: 140, oldPrice: 200, discount: "30%", category: "رعب", cover: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=500&q=80", desc: "مجموعة قصصية مرعبة تأخذ القارئ إلى كواليس الخوف البشري والظلام النفسي." },
-  { id: 3, title: "بساتين عربستان", author: "أسامة المسلم", price: 220, oldPrice: 300, discount: "26%", category: "مغامرة", cover: "https://images.unsplash.com/photo-1495640388908-05fa85288e61?auto=format&fit=crop&w=500&q=80", desc: "ملحمة خيالية ومغامرة مشوقة تدور حول ساحرتين وتحديات الصراع والقبائل في عصور قديمة." },
-  { id: 4, title: "ساق البامبو", author: "سعود السنعوسي", price: 210, oldPrice: 300, discount: "30%", category: "كلاسيكيات", cover: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=500&q=80", desc: "رواية حائزة على جائزة بوكر العربية، تحكي قصة شاب مولود لأم كويتية وأب فلبيني ومعاناة الهوية." },
-  { id: 5, title: "في قلبي أنثى عبرية", author: "خولة حمدي", price: 160, oldPrice: 220, discount: "27%", category: "رومانسية", cover: "https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=500&q=80", desc: "قصة حقيقية رومانسية واجتماعية مؤثرة عن فتاة يهودية تتبناها عائلة مسلمة في تونس وسط ظروف عصيبة." },
-  { id: 6, title: "هيبتا", author: "محمد صادق", price: 130, oldPrice: 180, discount: "28%", category: "رومانسية", cover: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=500&q=80", desc: "رحلة تبحر في مراحل الحب السبعة من البداية وحتى النهاية وتحليل النفس البشرية العاطفية." },
-  { id: 7, title: "دراسة في اللون القرمزي (شارلوك هولمز)", author: "آرثر كونان دويل", price: 110, oldPrice: 150, discount: "26%", category: "غموض", cover: "https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=500&q=80", desc: "أول ظهور للمحقق الاسطوري شارلوك هولمز ودكتور واتسون في جريمة غامضة ومحيرة." },
-  { id: 8, title: "الأسود يليق بك", author: "أحلام مستغانمي", price: 190, oldPrice: 260, discount: "27%", category: "رومانسية", cover: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=500&q=80", desc: "رواية عاطفية راقية تعبر عن العشق والكبرياء وثأر المشاعر بين مطربة جزائرية وثري عربي." },
-  { id: 9, title: "ثلاثية غرناطة", author: "رضوى عاشور", price: 320, oldPrice: 450, discount: "28%", category: "كلاسيكيات", cover: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=500&q=80", desc: "ملحمة تاريخية وإنسانية رصينة توثق سقوط الأندلس وتفاصيل حياة عائلة أبو جعفر في غرناطة." },
-  { id: 10, title: "عالم صوفي", author: "جوستاين غاردر", price: 240, oldPrice: 350, discount: "31%", category: "غموض", cover: "https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=500&q=80", desc: "رواية فلسفية غامضة تأخذ فتاة صغيرة في رحلة تاريخية لاكتشاف أسئلة الوجود الكبرى." }
-];
-
 let cart = [];
 let currentList = books;
 const shippingFee = 70;
 
 function renderBooks(list) {
+
   const grid = document.getElementById("bookGrid");
   let favorites = JSON.parse(localStorage.getItem('taleora_favs')) || [];
 
