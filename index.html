@@ -240,32 +240,36 @@ footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:13px;bor
 <aside id="cartDrawer" class="drawer">
   <button class="close-btn" onclick="toggleCart()">×</button>
   <h2 style="margin-top:0;">سلة المشتريات</h2>
-  <div id="cartItemsList" style="margin-top:15px;"></div>
   
-  <div style="margin-top:15px;border-top:1px solid var(--line);padding-top:15px;display:flex;flex-direction:column;gap:10px;">
-    <input type="text" id="custName" placeholder="الاسم الكريم" class="search" style="border-radius:8px;font-size:12px;padding:8px 12px;width:100%;max-width:100%;">
-    <input type="tel" id="custPhone" placeholder="رقم الموبايل" class="search" style="border-radius:8px;font-size:12px;padding:8px 12px;width:100%;max-width:100%;">
-    <textarea id="custAddress" placeholder="العنوان بالتفصيل (المحافظة، المنطقة، الشارع)" class="search" style="border-radius:8px;font-size:12px;padding:8px 12px;width:100%;max-width:100%;resize:none;height:65px;font-family:Tahoma;"></textarea>
-  </div>
-
-  <div style="margin-top:15px;border-top:1px solid var(--line);padding-top:15px;">
-    <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:8px;color:var(--muted);">
-      <span>مجموع الكتب:</span>
-      <span id="subtotalPrice">0 جنيه</span>
-    </div>
-    <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:12px;color:var(--muted);">
-      <span>مصاريف الشحن (لكل محافظات مصر):</span>
-      <span>70 جنيه</span>
-    </div>
-    <div style="display:flex;justify-content:space-between;font-size:16px;margin-bottom:15px;border-top:1px dashed var(--line);padding-top:10px;">
-      <span>الإجمالي الكلي:</span>
-      <b style="color:var(--gold2);" id="totalPrice">70 جنيه</b>
-    </div>
+  <div id="cartContentArea">
+    <div id="cartItemsList" style="margin-top:15px;"></div>
     
-    <div style="display:flex;flex-direction:column;gap:8px;">
-      <button class="btn" style="width:100%;text-align:center;background:linear-gradient(135deg, #25D366, #128C7E);color:white;font-size:13px;padding:10px;" onclick="checkoutWhatsApp()">🟢 إتمام عبر واتساب</button>
-      <button class="btn" style="width:100%;text-align:center;background:linear-gradient(135deg, #0088cc, #00aaee);color:white;font-size:13px;padding:10px;" onclick="checkoutTelegram()">🔵 إتمام عبر تليجرام</button>
-      <button class="btn" style="width:100%;text-align:center;background:linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);color:white;font-size:13px;padding:10px;" onclick="checkoutInstagram()">🟣 إتمام عبر إنستجرام</button>
+    <div style="margin-top:15px;border-top:1px solid var(--line);padding-top:15px;display:flex;flex-direction:column;gap:10px;">
+      <input type="text" id="custName" placeholder="الاسم الكريم" class="search" style="border-radius:8px;font-size:12px;padding:8px 12px;width:100%;max-width:100%;">
+      <input type="tel" id="custPhone" placeholder="رقم الموبايل" class="search" style="border-radius:8px;font-size:12px;padding:8px 12px;width:100%;max-width:100%;">
+      <textarea id="custAddress" placeholder="العنوان بالتفصيل (المحافظة، المنطقة، الشارع)" class="search" style="border-radius:8px;font-size:12px;padding:8px 12px;width:100%;max-width:100%;resize:none;height:65px;font-family:Tahoma;"></textarea>
+    </div>
+
+    <div style="margin-top:15px;border-top:1px solid var(--line);padding-top:15px;">
+      <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:8px;color:var(--muted);">
+        <span>مجموع الكتب:</span>
+        <span id="subtotalPrice">0 جنيه</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:12px;color:var(--muted);">
+        <span>مصاريف الشحن (لكل محافظات مصر):</span>
+        <span>70 جنيه</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:16px;margin-bottom:15px;border-top:1px dashed var(--line);padding-top:10px;">
+        <span>الإجمالي الكلي:</span>
+        <b style="color:var(--gold2);" id="totalPrice">70 جنيه</b>
+      </div>
+      
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <button class="btn" style="width:100%;text-align:center;background:linear-gradient(135deg, var(--gold2), var(--gold));color:#1c110b;font-size:13px;padding:10px;" onclick="submitOrderDirectly()">🛒 إتمام الطلب مباشرة على الموقع</button>
+        <button class="btn" style="width:100%;text-align:center;background:linear-gradient(135deg, #25D366, #128C7E);color:white;font-size:13px;padding:10px;" onclick="checkoutWhatsApp()">🟢 إتمام عبر واتساب</button>
+        <button class="btn" style="width:100%;text-align:center;background:linear-gradient(135deg, #0088cc, #00aaee);color:white;font-size:13px;padding:10px;" onclick="checkoutTelegram()">🔵 إتمام عبر تليجرام</button>
+        <button class="btn" style="width:100%;text-align:center;background:linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);color:white;font-size:13px;padding:10px;" onclick="checkoutInstagram()">🟣 إتمام عبر إنستجرام</button>
+      </div>
     </div>
   </div>
 </aside>
@@ -435,6 +439,61 @@ function getOrderDetails() {
   message += `💰 *الإجمالي الكلي:* ${total} جنيه`;
 
   return { name, phone, message };
+}
+
+function submitOrderDirectly() {
+  if (cart.length === 0) {
+    alert("السلة فارغة!");
+    return;
+  }
+
+  let name = document.getElementById("custName").value.trim();
+  let phone = document.getElementById("custPhone").value.trim();
+  let address = document.getElementById("custAddress").value.trim();
+
+  if (!name || !phone || !address) {
+    alert("يرجى إدخال (الاسم، رقم الموبايل، والعنوان بالتفصيل) لإتمام الطلب بنجاح.");
+    return;
+  }
+
+  let subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+  let total = subtotal + shippingFee;
+  let orderId = Math.floor(100000 + Math.random() * 900000);
+
+  let newOrder = {
+    orderId: orderId,
+    name: name,
+    phone: phone,
+    address: address,
+    items: [...cart],
+    total: total,
+    date: new Date().toLocaleString()
+  };
+
+  let savedOrders = JSON.parse(localStorage.getItem("taleora_orders") || "[]");
+  savedOrders.push(newOrder);
+  localStorage.setItem("taleora_orders", JSON.stringify(savedOrders));
+
+  document.getElementById("cartContentArea").innerHTML = `
+    <div style="text-align:center; padding: 20px 10px;">
+      <div style="font-size: 45px; margin-bottom: 10px;">🎉</div>
+      <h3 style="color:var(--gold2); margin-top:0;">تم استلام طلبك بنجاح!</h3>
+      <p style="color:var(--muted); font-size:13px; margin-bottom: 15px;">رقم الطلب: <b style="color:var(--text);">#${orderId}</b></p>
+      
+      <div style="background:#ffffff06; border:1px solid var(--line); border-radius:10px; padding:12px; text-align:right; font-size:12px; line-height:1.6; margin-bottom: 20px;">
+        <span style="color:var(--muted); display:block;">تفاصيل الشحن:</span>
+        <b>${name}</b><br>
+        <b>${phone}</b><br>
+        <b>${address}</b><br>
+        <hr style="border:0; border-top:1px solid var(--line); margin:8px 0;">
+        <span style="color:var(--gold2); font-weight:bold;">الإجمالي المدفوع عند الاستلام: ${total} ج.م</span>
+      </div>
+
+      <p style="font-size:12px; color:var(--muted); line-height:1.5;">شكراً لاختيارك متجر Taleora ❤️<br>سنتواصل معك قريباً لتأكيد موعد الشحن.</p>
+      
+      <button class="btn" style="width:100%; margin-top: 15px; font-size:13px;" onclick="location.reload()">إغلاق ومتابعة التصفح</button>
+    </div>
+  `;
 }
 
 function resetCartAndInputs() {
