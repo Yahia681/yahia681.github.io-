@@ -1,9 +1,8 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
   <meta charset="UTF-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Taleora AI 🤖</title>
@@ -49,6 +48,7 @@
       border-radius: 15px;
       padding: 20px;
       margin-bottom: 15px;
+      overflow-y: auto;
     }
 
     .message {
@@ -99,75 +99,205 @@
 
 <body>
 
-<header>
-  <h1>🤖 Taleora AI</h1>
-  <p>مساعدك الذكي لاكتشاف الكتب والروايات</p>
-</header>
+  <header>
+    <h1>🤖 Taleora AI</h1>
+    <p>مساعدك الذكي لاكتشاف الكتب والروايات</p>
+  </header>
 
-<div class="chat">
 
-  <div id="messages">
+  <div class="chat">
 
-    <div class="message ai">
-      👋 أهلاً بك! أنا Taleora AI.
-      <br>
-      اسألني عن أي كتاب أو قل لي نوع الروايات التي تحبها.
-    </div>
+    <div id="messages">
 
-  </div>
-
-  <div class="input-area">
-
-    <input
-      type="text"
-      id="userInput"
-      placeholder="اكتب رسالتك هنا..."
-    >
-
-    <button onclick="sendMessage()">
-      إرسال
-    </button>
-
-  </div>
-
-</div>
-
-<script>
-
-function sendMessage() {
-
-  const input = document.getElementById("userInput");
-
-  const message = input.value.trim();
-
-  if (message === "") return;
-
-  const messages = document.getElementById("messages");
-
-  // رسالة المستخدم
-  messages.innerHTML += `
-    <div class="message user">
-      ${message}
-    </div>
-  `;
-
-  input.value = "";
-
-  // رد مؤقت
-  setTimeout(() => {
-
-    messages.innerHTML += `
       <div class="message ai">
-        🤖 أنا ما زلت تحت التطوير!
-        قريبًا سأصبح مساعد ذكاء اصطناعي حقيقي.
+        👋 أهلاً بك! أنا Taleora AI.
+        <br>
+        قل لي نوع الروايات التي تحبها وسأرشح لك كتبًا مناسبة.
       </div>
-    `;
 
-  }, 500);
+    </div>
 
-}
 
-</script>
+    <div class="input-area">
+
+      <input
+        type="text"
+        id="userInput"
+        placeholder="مثلاً: عايز كتاب رعب..."
+      >
+
+      <button onclick="sendMessage()">
+        إرسال
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- ملف الكتب -->
+  <script src="../books.js"></script>
+
+
+  <!-- كود Taleora AI -->
+  <script>
+
+    function sendMessage() {
+
+      const input = document.getElementById("userInput");
+      const message = input.value.trim();
+
+      if (message === "") return;
+
+      const messages = document.getElementById("messages");
+
+
+      // إظهار رسالة المستخدم
+      messages.innerHTML += `
+        <div class="message user">
+          ${message}
+        </div>
+      `;
+
+
+      input.value = "";
+
+
+      const userText = message.toLowerCase();
+
+      let category = null;
+
+
+      // تحديد نوع الكتاب
+      if (
+        userText.includes("رعب") ||
+        userText.includes("مرعب") ||
+        userText.includes("خوف")
+      ) {
+
+        category = "رعب";
+
+      }
+
+      else if (
+        userText.includes("رومانسي") ||
+        userText.includes("رومانسية") ||
+        userText.includes("حب")
+      ) {
+
+        category = "رومانسية";
+
+      }
+
+      else if (
+        userText.includes("مغامرة") ||
+        userText.includes("خيال") ||
+        userText.includes("مشوق")
+      ) {
+
+        category = "مغامرة";
+
+      }
+
+      else if (
+        userText.includes("غموض") ||
+        userText.includes("جريمة") ||
+        userText.includes("ألغاز")
+      ) {
+
+        category = "غموض";
+
+      }
+
+      else if (
+        userText.includes("كلاسيك") ||
+        userText.includes("تاريخ")
+      ) {
+
+        category = "كلاسيكيات";
+
+      }
+
+
+      let reply = "";
+
+
+      if (category) {
+
+        const results = books.filter(
+          book => book.category === category
+        );
+
+
+        if (results.length > 0) {
+
+          reply = `
+            🤖 أنصحك بهذه الكتب في قسم <b>${category}</b>:<br><br>
+          `;
+
+
+          results.forEach(book => {
+
+            reply += `
+              📚 <b>${book.title}</b><br>
+              ✍️ ${book.author}<br>
+              💰 ${book.price} جنيه<br><br>
+            `;
+
+          });
+
+        } else {
+
+          reply = "🤖 للأسف لم أجد كتبًا في هذا القسم.";
+
+        }
+
+      }
+
+      else {
+
+        reply = `
+          🤖 لم أفهم نوع الكتاب الذي تبحث عنه 😅<br><br>
+
+          جرب تقول مثلًا:<br><br>
+
+          👻 عايز كتاب رعب<br>
+          ❤️ عايز رواية رومانسية<br>
+          🕵️ عايز كتاب غموض<br>
+          🗺️ عايز كتاب مغامرة<br>
+          📚 عايز كتاب كلاسيكي
+        `;
+
+      }
+
+
+      // ظهور الرد
+      setTimeout(() => {
+
+        messages.innerHTML += `
+          <div class="message ai">
+            ${reply}
+          </div>
+        `;
+
+        messages.scrollTop = messages.scrollHeight;
+
+      }, 500);
+
+    }
+
+
+    // الإرسال عند الضغط على Enter
+    document.getElementById("userInput")
+      .addEventListener("keypress", function(event) {
+
+        if (event.key === "Enter") {
+          sendMessage();
+        }
+
+      });
+
+  </script>
 
 </body>
 </html>
