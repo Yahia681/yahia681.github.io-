@@ -1,1 +1,173 @@
 
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Taleora AI 🤖</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Tahoma, Arial, sans-serif;
+      background: #0d0a09;
+      color: white;
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 20px;
+      text-align: center;
+      background: #16120f;
+      border-bottom: 1px solid #d9a45e;
+    }
+
+    header h1 {
+      margin: 0;
+      color: #d9a45e;
+    }
+
+    header p {
+      color: #aaa;
+    }
+
+    .chat {
+      max-width: 700px;
+      margin: 30px auto;
+      padding: 20px;
+    }
+
+    #messages {
+      min-height: 400px;
+      background: #16120f;
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 15px;
+    }
+
+    .message {
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 10px;
+      line-height: 1.6;
+    }
+
+    .ai {
+      background: #272019;
+    }
+
+    .user {
+      background: #d9a45e;
+      color: #111;
+      margin-right: 40px;
+    }
+
+    .input-area {
+      display: flex;
+      gap: 10px;
+    }
+
+    input {
+      flex: 1;
+      padding: 15px;
+      border-radius: 10px;
+      border: none;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 15px 25px;
+      border: none;
+      border-radius: 10px;
+      background: #d9a45e;
+      color: #111;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #f0bf78;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🤖 Taleora AI</h1>
+  <p>مساعدك الذكي لاكتشاف الكتب والروايات</p>
+</header>
+
+<div class="chat">
+
+  <div id="messages">
+
+    <div class="message ai">
+      👋 أهلاً بك! أنا Taleora AI.
+      <br>
+      اسألني عن أي كتاب أو قل لي نوع الروايات التي تحبها.
+    </div>
+
+  </div>
+
+  <div class="input-area">
+
+    <input
+      type="text"
+      id="userInput"
+      placeholder="اكتب رسالتك هنا..."
+    >
+
+    <button onclick="sendMessage()">
+      إرسال
+    </button>
+
+  </div>
+
+</div>
+
+<script>
+
+function sendMessage() {
+
+  const input = document.getElementById("userInput");
+
+  const message = input.value.trim();
+
+  if (message === "") return;
+
+  const messages = document.getElementById("messages");
+
+  // رسالة المستخدم
+  messages.innerHTML += `
+    <div class="message user">
+      ${message}
+    </div>
+  `;
+
+  input.value = "";
+
+  // رد مؤقت
+  setTimeout(() => {
+
+    messages.innerHTML += `
+      <div class="message ai">
+        🤖 أنا ما زلت تحت التطوير!
+        قريبًا سأصبح مساعد ذكاء اصطناعي حقيقي.
+      </div>
+    `;
+
+  }, 500);
+
+}
+
+</script>
+
+</body>
+</html>
