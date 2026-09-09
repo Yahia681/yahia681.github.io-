@@ -1,10 +1,29 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
+
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<meta name="viewport"
+      content="width=device-width,initial-scale=1">
+
 <title>تفاصيل الرواية | Taleora</title>
+
+<meta name="description"
+      content="Taleora - عالم الحكايات. اكتشف تفاصيل الروايات والكتب، المؤلفين، الأسعار والتصنيفات، واطلب كتابك بسهولة.">
+
+<meta name="robots"
+      content="index, follow">
+
+<meta name="theme-color"
+      content="#0d0a09">
+
 <style>
+
+/* ===============================
+   VARIABLES
+================================ */
+
 :root{
   --bg:#0d0a09;
   --card:#16120f;
@@ -16,280 +35,1507 @@
   --line:#ffffff15;
   --accent:#ff4757;
 }
-*{box-sizing:border-box;}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Tahoma,Arial,sans-serif;}
+
+
+/* ===============================
+   RESET
+================================ */
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Tahoma,Arial,sans-serif;
+}
+
+
+/* ===============================
+   HEADER
+================================ */
 
 header{
-  position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:15px;
-  padding:15px 5%;background:#0d0a0be8;backdrop-filter:blur(15px);
+  position:sticky;
+  top:0;
+  z-index:50;
+
+  display:flex;
+  align-items:center;
+  gap:15px;
+
+  padding:15px 5%;
+
+  background:#0d0a0be8;
+
+  backdrop-filter:blur(15px);
+
   border-bottom:1px solid var(--line);
 }
-.logo{font-size:22px;font-weight:900;color:var(--gold2);cursor:pointer;white-space:nowrap;}
-.logo small{display:block;font-size:8px;letter-spacing:4px;color:#fff;text-align:center;}
-.icon-btn{background:none;border:0;color:white;font-size:20px;cursor:pointer;position:relative;padding:5px;margin-right:auto;}
-#count{
-  position:absolute;top:-2px;right:-5px;background:var(--gold);color:#000;
-  font-size:10px;font-weight:bold;padding:1px 5px;border-radius:50%;
+
+.logo{
+  font-size:22px;
+  font-weight:900;
+  color:var(--gold2);
+  cursor:pointer;
+  white-space:nowrap;
 }
 
-.main-wrapper{max-width:900px;margin:40px auto;padding:0 20px;}
-.back{display:inline-block;margin-bottom:20px;color:var(--gold2);text-decoration:none;font-weight:bold;font-size:14px;}
-.back:hover{text-decoration:underline;}
+.logo small{
+  display:block;
+  font-size:8px;
+  letter-spacing:4px;
+  color:#fff;
+}
 
-.container{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:30px;display:flex;gap:30px;flex-wrap:wrap;position:relative;overflow:hidden;}
-.book-img-box{position:relative;width:250px;height:350px;border-radius:12px;overflow:hidden;background:#221a15;flex-shrink:0;}
-.book-img{width:100%;height:100%;object-fit:cover;}
-.discount-badge{position:absolute;top:10px;right:10px;background:var(--accent);color:#fff;font-size:11px;font-weight:bold;padding:4px 10px;border-radius:6px;z-index:2;}
+.icon-btn{
+  background:none;
+  border:0;
+  color:white;
+  font-size:20px;
+  cursor:pointer;
+  position:relative;
+  padding:5px;
+  margin-right:auto;
+}
 
-.book-details{flex:1;min-width:250px;display:flex;flex-direction:column;}
-h1{color:var(--gold2);margin-top:0;font-size:26px;margin-bottom:8px;}
-.author{color:var(--muted);margin-bottom:15px;font-size:14px;}
+.icon-btn:focus-visible,
+.btn:focus-visible,
+.back:focus-visible,
+.close-btn:focus-visible,
+.remove-btn:focus-visible{
+  outline:2px solid var(--gold2);
+  outline-offset:3px;
+}
 
-.specs-box{display:grid;grid-template-columns:repeat(2, 1fr);gap:10px;background:#ffffff05;border:1px solid var(--line);padding:12px;border-radius:10px;margin:15px 0;font-size:12px;}
-.spec-item{color:var(--muted);}
-.spec-item b{color:var(--text);display:block;margin-top:2px;}
+#count{
+  position:absolute;
+  top:-2px;
+  right:-5px;
 
-.desc{color:#d0c4b4;line-height:1.7;margin-bottom:20px;font-size:13px;}
+  background:var(--gold);
+  color:#000;
 
-.price-action-area{display:flex;align-items:center;justify-content:space-between;margin-top:auto;border-top:1px solid var(--line);padding-top:15px;flex-wrap:wrap;gap:15px;}
-.price-box{display:flex;flex-direction:column;}
-.old-price{text-decoration:line-through;color:var(--muted);font-size:12px;}
-.price{color:var(--gold2);font-size:22px;font-weight:bold;}
+  font-size:10px;
+  font-weight:bold;
+
+  padding:1px 5px;
+
+  border-radius:50%;
+}
+
+
+/* ===============================
+   MAIN
+================================ */
+
+.main-wrapper{
+  max-width:900px;
+  margin:40px auto;
+  padding:0 20px;
+}
+
+.back{
+  display:inline-block;
+  margin-bottom:20px;
+
+  color:var(--gold2);
+
+  text-decoration:none;
+  font-weight:bold;
+  font-size:14px;
+}
+
+.back:hover{
+  text-decoration:underline;
+}
+
+
+/* ===============================
+   BOOK CONTAINER
+================================ */
+
+.container{
+  background:var(--card);
+
+  border:1px solid var(--line);
+
+  border-radius:20px;
+
+  padding:30px;
+
+  display:flex;
+  gap:30px;
+
+  flex-wrap:wrap;
+
+  position:relative;
+
+  overflow:hidden;
+}
+
+
+/* ===============================
+   BOOK IMAGE
+================================ */
+
+.book-img-box{
+  position:relative;
+
+  width:250px;
+  height:350px;
+
+  border-radius:12px;
+
+  overflow:hidden;
+
+  background:#221a15;
+
+  flex-shrink:0;
+}
+
+.book-img{
+  display:block;
+
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+
+  background:#221a15;
+}
+
+.discount-badge{
+  position:absolute;
+
+  top:10px;
+  right:10px;
+
+  background:var(--accent);
+  color:#fff;
+
+  font-size:11px;
+  font-weight:bold;
+
+  padding:4px 10px;
+
+  border-radius:6px;
+
+  z-index:2;
+}
+
+
+/* ===============================
+   BOOK DETAILS
+================================ */
+
+.book-details{
+  flex:1;
+
+  min-width:250px;
+
+  display:flex;
+  flex-direction:column;
+}
+
+h1{
+  color:var(--gold2);
+
+  margin-top:0;
+  margin-bottom:8px;
+
+  font-size:26px;
+
+  line-height:1.4;
+}
+
+.author{
+  color:var(--muted);
+
+  margin-bottom:15px;
+
+  font-size:14px;
+}
+
+.specs-box{
+  display:grid;
+
+  grid-template-columns:repeat(2,1fr);
+
+  gap:10px;
+
+  background:#ffffff05;
+
+  border:1px solid var(--line);
+
+  padding:12px;
+
+  border-radius:10px;
+
+  margin:15px 0;
+
+  font-size:12px;
+}
+
+.spec-item{
+  color:var(--muted);
+}
+
+.spec-item b{
+  color:var(--text);
+
+  display:block;
+
+  margin-top:2px;
+}
+
+.desc{
+  color:#d0c4b4;
+
+  line-height:1.7;
+
+  margin-bottom:20px;
+
+  font-size:13px;
+}
+
+
+/* ===============================
+   PRICE
+================================ */
+
+.price-action-area{
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  margin-top:auto;
+
+  border-top:1px solid var(--line);
+
+  padding-top:15px;
+
+  flex-wrap:wrap;
+
+  gap:15px;
+}
+
+.price-box{
+  display:flex;
+  flex-direction:column;
+}
+
+.old-price{
+  text-decoration:line-through;
+
+  color:var(--muted);
+
+  font-size:12px;
+}
+
+.price{
+  color:var(--gold2);
+
+  font-size:22px;
+
+  font-weight:bold;
+}
+
+
+/* ===============================
+   BUTTON
+================================ */
 
 .btn{
-  border:0;border-radius:10px;padding:10px 20px;
-  background:linear-gradient(135deg, var(--gold2), var(--gold));
-  color:#1c110b;font-weight:900;cursor:pointer;transition:0.2s;text-decoration:none;font-size:14px;
+  border:0;
+
+  border-radius:10px;
+
+  padding:10px 20px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--gold2),
+      var(--gold)
+    );
+
+  color:#1c110b;
+
+  font-weight:900;
+
+  cursor:pointer;
+
+  transition:
+    transform .2s ease,
+    filter .2s ease;
+
+  text-decoration:none;
+
+  font-size:14px;
 }
-.btn:hover{filter:brightness(1.1);transform:translateY(-2px);}
+
+.btn:hover{
+  filter:brightness(1.1);
+
+  transform:translateY(-2px);
+}
+
+
+/* ===============================
+   CART DRAWER
+================================ */
 
 .drawer{
-  position:fixed;inset:0 0 0 auto;width:min(380px, 90vw);background:#130f0d;
-  z-index:100;padding:25px;box-shadow:-10px 0 30px rgba(0,0,0,0.7);
-  transform:translateX(110%);transition:0.3s cubic-bezier(0.4, 0, 0.2, 1);overflow-y:auto;
-}
-.drawer.open{transform:none;}
-.close-btn{background:none;border:none;color:white;font-size:24px;cursor:pointer;float:left;}
-.cart-item{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);font-size:13px;}
-.remove-btn{background:none;border:none;color:var(--accent);cursor:pointer;font-size:16px;}
-.search{width:100%;background:#ffffff08;border:1px solid var(--line);color:white;border-radius:8px;padding:8px 12px;outline:none;font-size:12px;}
+  position:fixed;
 
-footer{text-align:center;padding:30px 20px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);margin-top:50px;}
+  inset:0 0 0 auto;
+
+  width:min(380px,90vw);
+
+  background:#130f0d;
+
+  z-index:100;
+
+  padding:25px;
+
+  box-shadow:
+    -10px 0 30px rgba(0,0,0,.7);
+
+  transform:translateX(110%);
+
+  transition:
+    transform .3s cubic-bezier(.4,0,.2,1);
+
+  overflow-y:auto;
+}
+
+.drawer.open{
+  transform:none;
+}
+
+.close-btn{
+  background:none;
+
+  border:none;
+
+  color:white;
+
+  font-size:24px;
+
+  cursor:pointer;
+
+  float:left;
+}
+
+.cart-item{
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  padding:12px 0;
+
+  border-bottom:1px solid var(--line);
+
+  font-size:13px;
+
+  gap:10px;
+}
+
+.remove-btn{
+  background:none;
+
+  border:none;
+
+  color:var(--accent);
+
+  cursor:pointer;
+
+  font-size:16px;
+}
+
+.search{
+  width:100%;
+
+  background:#ffffff08;
+
+  border:1px solid var(--line);
+
+  color:white;
+
+  border-radius:8px;
+
+  padding:8px 12px;
+
+  outline:none;
+
+  font-size:12px;
+}
+
+.search::placeholder{
+  color:var(--muted);
+}
+
+.search:focus{
+  border-color:var(--gold);
+}
+
+
+/* ===============================
+   FOOTER
+================================ */
+
+footer{
+  text-align:center;
+
+  padding:30px 20px;
+
+  color:var(--muted);
+
+  font-size:13px;
+
+  border-top:1px solid var(--line);
+
+  margin-top:50px;
+}
+
+
+/* ===============================
+   MOBILE
+================================ */
 
 @media(max-width:600px){
-  .container{flex-direction:column;align-items:center;text-align:center;}
-  .book-img-box{width:100%;height:300px;}
-  .specs-box{text-align:right;}
-  .price-action-area{justify-content:center;width:100%;}
+
+  .main-wrapper{
+    margin:25px auto;
+    padding:0 12px;
+  }
+
+  .container{
+    flex-direction:column;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding:20px;
+  }
+
+  .book-img-box{
+    width:100%;
+
+    max-width:250px;
+
+    height:350px;
+  }
+
+  .specs-box{
+    text-align:right;
+  }
+
+  .price-action-area{
+    justify-content:center;
+
+    width:100%;
+  }
+
+  .price-action-area .btn{
+    width:100%;
+  }
+
+  h1{
+    font-size:23px;
+  }
+
+  .desc{
+    font-size:13px;
+  }
 }
+
+
+/* ===============================
+   REDUCED MOTION
+================================ */
+
+@media(prefers-reduced-motion:reduce){
+
+  html{
+    scroll-behavior:auto;
+  }
+
+  *,
+  *::before,
+  *::after{
+    transition:none !important;
+    animation:none !important;
+  }
+}
+
 </style>
 </head>
+
+
 <body>
 
+
+<!-- ===============================
+     HEADER
+================================ -->
+
 <header>
-  <div class="logo" onclick="window.location.href='index.html'">TALEORA<small>عالم الحكايات</small></div>
-  <button class="icon-btn" onclick="toggleCart()">🛒<span id="count">0</span></button>
+
+  <div
+    class="logo"
+    onclick="window.location.href='index.html'"
+    role="button"
+    tabindex="0"
+    aria-label="العودة إلى الصفحة الرئيسية"
+    onkeydown="if(event.key==='Enter') window.location.href='index.html'"
+  >
+    TALEORA
+    <small>عالم الحكايات</small>
+  </div>
+
+
+  <button
+    class="icon-btn"
+    onclick="toggleCart()"
+    aria-label="فتح سلة المشتريات"
+    title="سلة المشتريات"
+  >
+    🛒
+    <span id="count">0</span>
+  </button>
+
 </header>
 
-<div class="main-wrapper">
-  <a href="index.html" class="back">← العودة للرئيسية والمكتبة</a>
-  <div class="container" id="bookDetails">
-    <p style="color:var(--muted);text-align:center;width:100%;">جاري تحميل تفاصيل الرواية...</p>
-  </div>
-</div>
+
+
+<!-- ===============================
+     MAIN
+================================ -->
+
+<main class="main-wrapper">
+
+  <a
+    href="index.html"
+    class="back"
+    aria-label="العودة إلى الصفحة الرئيسية والمكتبة"
+  >
+    ← العودة للرئيسية والمكتبة
+  </a>
+
+
+  <section
+    class="container"
+    id="bookDetails"
+    aria-live="polite"
+  >
+
+    <p
+      style="color:var(--muted);text-align:center;width:100%;"
+    >
+      جاري تحميل تفاصيل الرواية...
+    </p>
+
+  </section>
+
+</main>
+
+
+
+<!-- ===============================
+     FOOTER
+================================ -->
 
 <footer>
-  <strong style="color:var(--gold2)">Taleora Store</strong><br>جميع الحقوق محفوظة © 2026 - التوصيل لجميع محافظات مصر
+
+  <strong style="color:var(--gold2)">
+    Taleora Store
+  </strong>
+
+  <br>
+
+  جميع الحقوق محفوظة © 2026 -
+  التوصيل لجميع محافظات مصر
+
 </footer>
 
-<!-- سلة المشتريات -->
-<aside id="cartDrawer" class="drawer">
-  <button class="close-btn" onclick="toggleCart()">×</button>
-  <h2 style="margin-top:0;">سلة المشتريات</h2>
-  <div id="cartItemsList" style="margin-top:15px;"></div>
-  
-  <div style="margin-top:15px;border-top:1px solid var(--line);padding-top:15px;display:flex;flex-direction:column;gap:10px;">
-    <input type="text" id="custName" placeholder="الاسم الكريم" class="search">
-    <input type="tel" id="custPhone" placeholder="رقم الموبايل" class="search">
-    <textarea id="custAddress" placeholder="العنوان بالتفصيل (المحافظة، المنطقة، الشارع)" class="search" style="resize:none;height:65px;font-family:Tahoma;"></textarea>
+
+
+<!-- ===============================
+     CART
+================================ -->
+
+<aside
+  id="cartDrawer"
+  class="drawer"
+  aria-label="سلة المشتريات"
+  aria-hidden="true"
+>
+
+  <button
+    class="close-btn"
+    onclick="toggleCart()"
+    aria-label="إغلاق سلة المشتريات"
+    title="إغلاق"
+  >
+    ×
+  </button>
+
+
+  <h2 style="margin-top:0;">
+    سلة المشتريات
+  </h2>
+
+
+  <div
+    id="cartItemsList"
+    style="margin-top:15px;"
+  ></div>
+
+
+  <!-- CUSTOMER DATA -->
+
+  <div
+    style="
+      margin-top:15px;
+      border-top:1px solid var(--line);
+      padding-top:15px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    "
+  >
+
+    <input
+      type="text"
+      id="custName"
+      placeholder="الاسم الكريم"
+      class="search"
+      autocomplete="name"
+      aria-label="الاسم الكريم"
+    >
+
+
+    <input
+      type="tel"
+      id="custPhone"
+      placeholder="رقم الموبايل"
+      class="search"
+      autocomplete="tel"
+      inputmode="tel"
+      aria-label="رقم الموبايل"
+    >
+
+
+    <textarea
+      id="custAddress"
+      placeholder="العنوان بالتفصيل (المحافظة، المنطقة، الشارع)"
+      class="search"
+      autocomplete="street-address"
+      aria-label="العنوان بالتفصيل"
+      style="
+        resize:none;
+        height:65px;
+        font-family:Tahoma;
+      "
+    ></textarea>
+
   </div>
 
-  <div style="margin-top:15px;border-top:1px solid var(--line);padding-top:15px;">
-    <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:8px;color:var(--muted);">
-      <span>مجموع الكتب:</span>
-      <span id="subtotalPrice">0 جنيه</span>
+
+
+  <!-- TOTAL -->
+
+  <div
+    style="
+      margin-top:15px;
+      border-top:1px solid var(--line);
+      padding-top:15px;
+    "
+  >
+
+    <div
+      style="
+        display:flex;
+        justify-content:space-between;
+        font-size:13px;
+        margin-bottom:8px;
+        color:var(--muted);
+      "
+    >
+
+      <span>
+        مجموع الكتب:
+      </span>
+
+      <span id="subtotalPrice">
+        0 جنيه
+      </span>
+
     </div>
-    <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:12px;color:var(--muted);">
-      <span>مصاريف الشحن (لكل محافظات مصر):</span>
-      <span>70 جنيه</span>
+
+
+    <div
+      style="
+        display:flex;
+        justify-content:space-between;
+        font-size:13px;
+        margin-bottom:12px;
+        color:var(--muted);
+      "
+    >
+
+      <span>
+        مصاريف الشحن (لكل محافظات مصر):
+      </span>
+
+      <span>
+        70 جنيه
+      </span>
+
     </div>
-    <div style="display:flex;justify-content:space-between;font-size:16px;margin-bottom:15px;border-top:1px dashed var(--line);padding-top:10px;">
-      <span>الإجمالي الكلي:</span>
-      <b style="color:var(--gold2);" id="totalPrice">70 جنيه</b>
+
+
+    <div
+      style="
+        display:flex;
+        justify-content:space-between;
+        font-size:16px;
+        margin-bottom:15px;
+        border-top:1px dashed var(--line);
+        padding-top:10px;
+      "
+    >
+
+      <span>
+        الإجمالي الكلي:
+      </span>
+
+      <b
+        style="color:var(--gold2);"
+        id="totalPrice"
+      >
+        70 جنيه
+      </b>
+
     </div>
-    
-    <div style="display:flex;flex-direction:column;gap:8px;">
-      <button class="btn" style="width:100%;text-align:center;background:linear-gradient(135deg, #25D366, #128C7E);color:white;font-size:13px;padding:10px;" onclick="checkoutWhatsApp()">🟢 إتمام عبر واتساب</button>
-      <button class="btn" style="width:100%;text-align:center;background:linear-gradient(135deg, #0088cc, #00aaee);color:white;font-size:13px;padding:10px;" onclick="checkoutTelegram()">🔵 إتمام عبر تليجرام</button>
-      <button class="btn" style="width:100%;text-align:center;background:linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);color:white;font-size:13px;padding:10px;" onclick="checkoutInstagram()">🟣 إتمام عبر إنستجرام</button>
+
+
+
+    <!-- CHECKOUT BUTTONS -->
+
+    <div
+      style="
+        display:flex;
+        flex-direction:column;
+        gap:8px;
+      "
+    >
+
+      <button
+        class="btn"
+        style="
+          width:100%;
+          text-align:center;
+          background:linear-gradient(135deg,#25D366,#128C7E);
+          color:white;
+          font-size:13px;
+          padding:10px;
+        "
+        onclick="checkoutWhatsApp()"
+        aria-label="إتمام الطلب عبر واتساب"
+      >
+        🟢 إتمام عبر واتساب
+      </button>
+
+
+      <button
+        class="btn"
+        style="
+          width:100%;
+          text-align:center;
+          background:linear-gradient(135deg,#0088cc,#00aaee);
+          color:white;
+          font-size:13px;
+          padding:10px;
+        "
+        onclick="checkoutTelegram()"
+        aria-label="إتمام الطلب عبر تليجرام"
+      >
+        🔵 إتمام عبر تليجرام
+      </button>
+
+
+      <button
+        class="btn"
+        style="
+          width:100%;
+          text-align:center;
+          background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);
+          color:white;
+          font-size:13px;
+          padding:10px;
+        "
+        onclick="checkoutInstagram()"
+        aria-label="إتمام الطلب عبر إنستجرام"
+      >
+        🟣 إتمام عبر إنستجرام
+      </button>
+
     </div>
+
   </div>
+
 </aside>
+
+
+
+<!-- ===============================
+     BOOK DATABASE
+================================ -->
+
 <script src="books.js"></script>
 
+
+
 <script>
+
+/* ===============================
+   CART
+================================ */
+
 let cart = [];
+
 const shippingFee = 70;
 
-const urlParams = new URLSearchParams(window.location.search);
-const bookId = parseInt(urlParams.get('id'));
-const book = books.find(b => b.id === bookId);
 
-const container = document.getElementById('bookDetails');
+/* ===============================
+   GET BOOK ID
+================================ */
+
+const urlParams =
+  new URLSearchParams(window.location.search);
+
+const bookId =
+  parseInt(urlParams.get('id'),10);
 
 
+/* ===============================
+   FIND BOOK
+================================ */
+
+const book =
+  Number.isFinite(bookId)
+    ? books.find(b => b.id === bookId)
+    : null;
 
 
-if(book) {
+const container =
+  document.getElementById('bookDetails');
+
+
+/* ===============================
+   DISPLAY BOOK
+================================ */
+
+if(book){
+
+  /* تحسين SEO حسب الرواية */
+
+  document.title =
+    `${book.title} | Taleora`;
+
+
+  const metaDescription =
+    document.querySelector(
+      'meta[name="description"]'
+    );
+
+
+  if(metaDescription){
+
+    const description =
+      book.desc
+        ? `${book.title} - ${book.desc} | Taleora`
+        : `تعرف على تفاصيل رواية ${book.title} للكاتب ${book.author} وأسعارها وبياناتها على Taleora.`;
+
+    metaDescription.setAttribute(
+      'content',
+      description.substring(0,160)
+    );
+  }
+
+
   container.innerHTML = `
+
+    <!-- BOOK COVER -->
+
     <div class="book-img-box">
-      <img src="${book.cover}" class="book-img" alt="${book.title}">
-      ${book.discount ? `<span class="discount-badge">خصم ${book.discount}</span>` : ''}
+
+      <img
+        src="${book.cover}"
+        class="book-img"
+        alt="غلاف رواية ${book.title}"
+        width="250"
+        height="350"
+        fetchpriority="high"
+        decoding="async"
+      >
+
+      ${
+        book.discount
+          ? `
+            <span
+              class="discount-badge"
+              aria-label="خصم ${book.discount}"
+            >
+              خصم ${book.discount}
+            </span>
+          `
+          : ''
+      }
+
     </div>
+
+
+
+    <!-- BOOK DETAILS -->
+
     <div class="book-details">
-      <h1>${book.title}</h1>
-      <div class="author">المؤلف: ${book.author}</div>
-      <div class="desc">${book.desc}</div>
-      
-      <div class="specs-box">
-        <div class="spec-item">دار النشر: <b>${book.publisher}</b></div>
-        <div class="spec-item">عدد الصفحات: <b>${book.pages} صفحة</b></div>
-        <div class="spec-item">سنة الإصدار: <b>${book.year}</b></div>
-        <div class="spec-item">التصنيف: <b>${book.category}</b></div>
+
+      <h1>
+        ${book.title}
+      </h1>
+
+
+      <div class="author">
+        المؤلف: ${book.author}
       </div>
+
+
+      <div class="desc">
+        ${book.desc || 'لا يوجد وصف متاح لهذه الرواية حالياً.'}
+      </div>
+
+
+
+      <!-- SPECS -->
+
+      <div
+        class="specs-box"
+        aria-label="معلومات الرواية"
+      >
+
+        <div class="spec-item">
+          دار النشر:
+          <b>
+            ${book.publisher || 'غير محدد'}
+          </b>
+        </div>
+
+
+        <div class="spec-item">
+          عدد الصفحات:
+          <b>
+            ${book.pages || 'غير محدد'} صفحة
+          </b>
+        </div>
+
+
+        <div class="spec-item">
+          سنة الإصدار:
+          <b>
+            ${book.year || 'غير محدد'}
+          </b>
+        </div>
+
+
+        <div class="spec-item">
+          التصنيف:
+          <b>
+            ${book.category || 'غير محدد'}
+          </b>
+        </div>
+
+      </div>
+
+
+
+      <!-- PRICE -->
 
       <div class="price-action-area">
+
         <div class="price-box">
-          ${book.oldPrice ? `<span class="old-price">${book.oldPrice} ج.م</span>` : ''}
-          <span class="price">${book.price} ج.م</span>
+
+          ${
+            book.oldPrice
+              ? `
+                <span class="old-price">
+                  ${book.oldPrice} ج.م
+                </span>
+              `
+              : ''
+          }
+
+
+          <span class="price">
+            ${book.price} ج.م
+          </span>
+
         </div>
-        <button class="btn" onclick="addToCartAndOpen(${book.id})">أضف للسلة واطلب الآن</button>
+
+
+        <button
+          class="btn"
+          onclick="addToCartAndOpen(${book.id})"
+          aria-label="إضافة ${book.title} إلى السلة والطلب الآن"
+        >
+          أضف للسلة واطلب الآن
+        </button>
+
       </div>
+
     </div>
+
   `;
-} else {
-  container.innerHTML = `<p style="color:var(--muted);text-align:center;width:100%;">عذراً، لم يتم العثور على هذه الرواية.</p>`;
+
+}
+else{
+
+  container.innerHTML = `
+
+    <div style="
+      width:100%;
+      text-align:center;
+      padding:30px;
+    ">
+
+      <p style="color:var(--muted);">
+        عذراً، لم يتم العثور على هذه الرواية.
+      </p>
+
+      <a
+        href="index.html"
+        class="btn"
+        style="display:inline-block;margin-top:10px;"
+      >
+        العودة للمكتبة
+      </a>
+
+    </div>
+
+  `;
+
 }
 
-function addToCartAndOpen(id) {
-  let item = books.find(b => b.id === id);
-  if (item) {
+
+
+/* ===============================
+   ADD TO CART
+================================ */
+
+function addToCartAndOpen(id){
+
+  const item =
+    books.find(b => b.id === id);
+
+  if(item){
+
     cart.push(item);
+
     updateCartUI();
+
     toggleCart();
+
   }
+
 }
 
-function removeFromCart(index) {
-  cart.splice(index, 1);
+
+
+/* ===============================
+   REMOVE FROM CART
+================================ */
+
+function removeFromCart(index){
+
+  cart.splice(index,1);
+
   updateCartUI();
+
 }
 
-function updateCartUI() {
-  document.getElementById("count").textContent = cart.length;
-  const listElem = document.getElementById("cartItemsList");
 
-  if (cart.length === 0) {
-    listElem.innerHTML = `<p style="color:var(--muted);text-align:center;padding:20px;">السلة فارغة حالياً.</p>`;
-    document.getElementById("subtotalPrice").textContent = "0 جنيه";
-    document.getElementById("totalPrice").textContent = "0 جنيه";
+
+/* ===============================
+   UPDATE CART UI
+================================ */
+
+function updateCartUI(){
+
+  document.getElementById("count")
+    .textContent = cart.length;
+
+
+  const listElem =
+    document.getElementById("cartItemsList");
+
+
+  if(cart.length === 0){
+
+    listElem.innerHTML = `
+      <p style="
+        color:var(--muted);
+        text-align:center;
+        padding:20px;
+      ">
+        السلة فارغة حالياً.
+      </p>
+    `;
+
+
+    document.getElementById(
+      "subtotalPrice"
+    ).textContent = "0 جنيه";
+
+
+    document.getElementById(
+      "totalPrice"
+    ).textContent = "0 جنيه";
+
+
     return;
   }
-  
-  listElem.innerHTML = cart.map((item, idx) => `
-    <div class="cart-item">
-      <span>${item.title}</span>
-      <div style="display:flex;gap:15px;align-items:center;">
-        <b>${item.price} ج</b>
-        <button class="remove-btn" onclick="removeFromCart(${idx})">×</button>
+
+
+
+  listElem.innerHTML =
+    cart.map((item,idx) => `
+
+      <div class="cart-item">
+
+        <span>
+          ${item.title}
+        </span>
+
+        <div
+          style="
+            display:flex;
+            gap:15px;
+            align-items:center;
+          "
+        >
+
+          <b>
+            ${item.price} ج
+          </b>
+
+          <button
+            class="remove-btn"
+            onclick="removeFromCart(${idx})"
+            aria-label="حذف ${item.title} من السلة"
+            title="حذف"
+          >
+            ×
+          </button>
+
+        </div>
+
       </div>
-    </div>
-  `).join('');
 
-  let subtotal = cart.reduce((sum, item) => sum + item.price, 0);
-  let total = subtotal + shippingFee;
+    `).join('');
 
-  document.getElementById("subtotalPrice").textContent = subtotal + " جنيه";
-  document.getElementById("totalPrice").textContent = total + " جنيه";
+
+
+  const subtotal =
+    cart.reduce(
+      (sum,item) => sum + Number(item.price || 0),
+      0
+    );
+
+
+  const total =
+    subtotal + shippingFee;
+
+
+  document.getElementById(
+    "subtotalPrice"
+  ).textContent =
+    subtotal + " جنيه";
+
+
+  document.getElementById(
+    "totalPrice"
+  ).textContent =
+    total + " جنيه";
+
 }
 
-function getOrderDetails() {
-  if (cart.length === 0) {
+
+
+/* ===============================
+   ORDER DETAILS
+================================ */
+
+function getOrderDetails(){
+
+  if(cart.length === 0){
+
     alert("السلة فارغة!");
+
     return null;
   }
 
-  let name = document.getElementById("custName").value.trim();
-  let phone = document.getElementById("custPhone").value.trim();
-  let address = document.getElementById("custAddress").value.trim();
 
-  if (!name || !phone || !address) {
-    alert("يرجى إدخال (الاسم، رقم الموبايل، والعنوان بالتفصيل) لإتمام الطلب بنجاح.");
+  const name =
+    document.getElementById(
+      "custName"
+    ).value.trim();
+
+
+  const phone =
+    document.getElementById(
+      "custPhone"
+    ).value.trim();
+
+
+  const address =
+    document.getElementById(
+      "custAddress"
+    ).value.trim();
+
+
+
+  if(!name || !phone || !address){
+
+    alert(
+      "يرجى إدخال (الاسم، رقم الموبايل، والعنوان بالتفصيل) لإتمام الطلب بنجاح."
+    );
+
     return null;
   }
 
-  let booksListText = cart.map(item => `- ${item.title} (${item.price} ج.م)`).join('\n');
-  let subtotal = cart.reduce((sum, item) => sum + item.price, 0);
-  let total = subtotal + shippingFee;
 
-  let message = `🛒 *طلب جديد من صفحة تفاصيل الرواية - Taleora*\n\n`;
-  message += `👤 *الاسم:* ${name}\n`;
-  message += `📞 *الموبايل:* ${phone}\n`;
-  message += `📍 *العنوان:* ${address} (شامل التوصيل لمحافظات مصر)\n\n`;
-  message += `📚 *الكتب المطلوبة:*\n${booksListText}\n\n`;
-  message += `📦 *مجموع الكتب:* ${subtotal} ج.م\n`;
-  message += `🚚 *مصاريف الشحن:* ${shippingFee} ج.م\n`;
-  message += `💰 *الإجمالي الكلي:* ${total} جنيه`;
 
-  return { name, phone, message };
+  const booksListText =
+    cart
+      .map(
+        item =>
+          `- ${item.title} (${item.price} ج.م)`
+      )
+      .join('\n');
+
+
+  const subtotal =
+    cart.reduce(
+      (sum,item) =>
+        sum + Number(item.price || 0),
+      0
+    );
+
+
+  const total =
+    subtotal + shippingFee;
+
+
+
+  let message =
+    `🛒 *طلب جديد من صفحة تفاصيل الرواية - Taleora*\n\n`;
+
+  message +=
+    `👤 *الاسم:* ${name}\n`;
+
+  message +=
+    `📞 *الموبايل:* ${phone}\n`;
+
+  message +=
+    `📍 *العنوان:* ${address} (شامل التوصيل لمحافظات مصر)\n\n`;
+
+  message +=
+    `📚 *الكتب المطلوبة:*\n${booksListText}\n\n`;
+
+  message +=
+    `📦 *مجموع الكتب:* ${subtotal} ج.م\n`;
+
+  message +=
+    `🚚 *مصاريف الشحن:* ${shippingFee} ج.م\n`;
+
+  message +=
+    `💰 *الإجمالي الكلي:* ${total} جنيه`;
+
+
+  return {
+    name,
+    phone,
+    message
+  };
+
 }
 
-function resetCartAndInputs() {
+
+
+/* ===============================
+   RESET CART
+================================ */
+
+function resetCartAndInputs(){
+
   cart = [];
-  document.getElementById("custName").value = "";
-  document.getElementById("custPhone").value = "";
-  document.getElementById("custAddress").value = "";
+
+
+  document.getElementById(
+    "custName"
+  ).value = "";
+
+
+  document.getElementById(
+    "custPhone"
+  ).value = "";
+
+
+  document.getElementById(
+    "custAddress"
+  ).value = "";
+
+
   updateCartUI();
+
   toggleCart();
+
 }
 
-function checkoutWhatsApp() {
-  let order = getOrderDetails();
-  if (!order) return;
-  window.open(`https://wa.me/201055245130?text=${encodeURIComponent(order.message)}`, '_blank');
+
+
+/* ===============================
+   WHATSAPP
+================================ */
+
+function checkoutWhatsApp(){
+
+  const order =
+    getOrderDetails();
+
+
+  if(!order) return;
+
+
+  window.open(
+    `https://wa.me/201055245130?text=${encodeURIComponent(order.message)}`,
+    '_blank',
+    'noopener,noreferrer'
+  );
+
+
   resetCartAndInputs();
+
 }
 
-function checkoutTelegram() {
-  let order = getOrderDetails();
-  if (!order) return;
-  window.open(`https://t.me/xyo_zakaria_x?text=${encodeURIComponent(order.message)}`, '_blank');
+
+
+/* ===============================
+   TELEGRAM
+================================ */
+
+function checkoutTelegram(){
+
+  const order =
+    getOrderDetails();
+
+
+  if(!order) return;
+
+
+  window.open(
+    `https://t.me/xyo_zakaria_x?text=${encodeURIComponent(order.message)}`,
+    '_blank',
+    'noopener,noreferrer'
+  );
+
+
   resetCartAndInputs();
+
 }
 
-function checkoutInstagram() {
-  let order = getOrderDetails();
-  if (!order) return;
-  alert(`شكراً لك يا ${order.name} ❤️\nسيتم توجيهك لصفحة إنستجرام، يرجى إرسال تفاصيل طلبك في رسالة خاصة.`);
-  window.open("https://www.instagram.com/yahia__160?igsi=cXJlc3VwZGFkbmdh", '_blank');
+
+
+/* ===============================
+   INSTAGRAM
+================================ */
+
+function checkoutInstagram(){
+
+  const order =
+    getOrderDetails();
+
+
+  if(!order) return;
+
+
+  alert(
+    `شكراً لك يا ${order.name} ❤️\nسيتم توجيهك لصفحة إنستجرام، يرجى إرسال تفاصيل طلبك في رسالة خاصة.`
+  );
+
+
+  window.open(
+    "https://www.instagram.com/yahia__160?igsi=cXJlc3VwZGFkbmdh",
+    '_blank',
+    'noopener,noreferrer'
+  );
+
+
   resetCartAndInputs();
+
 }
 
-function toggleCart() {
-  document.getElementById("cartDrawer").classList.toggle("open");
+
+
+/* ===============================
+   TOGGLE CART
+================================ */
+
+function toggleCart(){
+
+  const drawer =
+    document.getElementById(
+      "cartDrawer"
+    );
+
+
+  drawer.classList.toggle("open");
+
+
+  const isOpen =
+    drawer.classList.contains("open");
+
+
+  drawer.setAttribute(
+    "aria-hidden",
+    String(!isOpen)
+  );
+
 }
+
+
+
+/* ===============================
+   INITIALIZE
+================================ */
 
 updateCartUI();
+
 </script>
+
 </body>
 </html>
